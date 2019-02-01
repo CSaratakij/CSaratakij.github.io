@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>General on CSaratakij</title>
+    <link>https://csaratakij.github.io/th/tags/general/</link>
+    <description>Recent content in General on CSaratakij</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>th</language>
+    <lastBuildDate>Fri, 01 Feb 2019 01:44:57 +0700</lastBuildDate>
+    
+	<atom:link href="https://csaratakij.github.io/th/tags/general/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>สวัสดีจ้า</title>
+      <link>https://csaratakij.github.io/th/2019/02/%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%88%E0%B9%89%E0%B8%B2/</link>
+      <pubDate>Fri, 01 Feb 2019 01:44:57 +0700</pubDate>
+      
+      <guid>https://csaratakij.github.io/th/2019/02/%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%88%E0%B9%89%E0%B8%B2/</guid>
+      <description>ยินดีต้อนรับสู่ blog, เย้ๆ xD
+ print(&amp;quot;Hello, World~&amp;quot;)  </description>
+    </item>
+    
+  </channel>
+</rss>

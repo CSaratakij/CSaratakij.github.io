@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://csaratakij.github.io/th/2019/02/%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%88%E0%B9%89%E0%B8%B2/</loc>
+    <lastmod>2019-02-01T01:44:57+07:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://csaratakij.github.io/en/2019/02/hello-world/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="th"
+                href="https://csaratakij.github.io/th/2019/02/%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%88%E0%B9%89%E0%B8%B2/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://csaratakij.github.io/th/about/</loc>
+    <lastmod>2015-06-20T14:02:37+02:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://csaratakij.github.io/en/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="th"
+                href="https://csaratakij.github.io/th/about/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://csaratakij.github.io/th/</loc>
+    <lastmod>2019-02-01T01:44:57+07:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://csaratakij.github.io/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="th"
+                href="https://csaratakij.github.io/th/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://csaratakij.github.io/th/tags/general/</loc>
+    <lastmod>2019-02-01T01:44:57+07:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://csaratakij.github.io/en/tags/general/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="th"
+                href="https://csaratakij.github.io/th/tags/general/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://csaratakij.github.io/th/posts/</loc>
+    <lastmod>2019-02-01T01:44:57+07:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://csaratakij.github.io/en/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="th"
+                href="https://csaratakij.github.io/th/posts/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://csaratakij.github.io/th/tags/</loc>
+    <lastmod>2019-02-01T01:44:57+07:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://csaratakij.github.io/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="th"
+                href="https://csaratakij.github.io/th/tags/"
+                />
+  </url>
+  
+</urlset>
