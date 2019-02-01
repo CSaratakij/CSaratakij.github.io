@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on CSaratakij</title>
-    <link>https://csaratakij.github.io/th/posts/</link>
-    <description>Recent content in Posts on CSaratakij</description>
+    <title>Custom Editor on CSaratakij</title>
+    <link>https://csaratakij.github.io/th/tags/custom-editor/</link>
+    <description>Recent content in Custom Editor on CSaratakij</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>th</language>
     <lastBuildDate>Fri, 01 Feb 2019 18:50:52 +0700</lastBuildDate>
     
-	<atom:link href="https://csaratakij.github.io/th/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://csaratakij.github.io/th/tags/custom-editor/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -22,16 +22,6 @@
 using UnityEngine; [ExecuteInEditMode] public class Log : MonoBehaviour { void Update() { Debug.Log(&amp;quot;Editor cause this update.&amp;quot;); } }  แต่เราทำอะไรไม่ได้มาก ไม่สามารถปรับแต่งอะไรในส่วนของ UI ใน Editor อย่างเช่น ตัว Inspector ได้ เหมาะกับเวลาที่เราต้องการอยากจะเห็นผลลัพธ์ ตอนอยู่ใน Editor มากกว่าที่จะสร้างเป็นเครื่องมือไว้ใช้เองใน Editor
 Hello World (Custom Menu) Script จะต้องอยู่ใน folder ที่ชื่อว่า &amp;ldquo;Editor&amp;rdquo;
 หากยังไม่มี ให้สร้าง folder ขึ้นมาใหม่ก่อน โดยผมจะสร้าง folder ไว้ที่ &amp;ldquo;Assets/Editor&amp;rdquo;</description>
-    </item>
-    
-    <item>
-      <title>สวัสดีจ้า</title>
-      <link>https://csaratakij.github.io/th/2019/02/%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%88%E0%B9%89%E0%B8%B2/</link>
-      <pubDate>Fri, 01 Feb 2019 01:44:57 +0700</pubDate>
-      
-      <guid>https://csaratakij.github.io/th/2019/02/%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%88%E0%B9%89%E0%B8%B2/</guid>
-      <description>ยินดีต้อนรับสู่ blog, เย้ๆ xD
- print(&amp;quot;Hello, World~&amp;quot;)  </description>
     </item>
     
   </channel>

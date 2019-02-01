@@ -6,10 +6,23 @@
     <description>Recent content on CSaratakij</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>th</language>
-    <lastBuildDate>Fri, 01 Feb 2019 01:44:57 +0700</lastBuildDate>
+    <lastBuildDate>Fri, 01 Feb 2019 18:50:52 +0700</lastBuildDate>
     
 	<atom:link href="https://csaratakij.github.io/th/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unity - Custom Editor 101</title>
+      <link>https://csaratakij.github.io/th/2019/02/unity-custom-editor-101/</link>
+      <pubDate>Fri, 01 Feb 2019 18:50:52 +0700</pubDate>
+      
+      <guid>https://csaratakij.github.io/th/2019/02/unity-custom-editor-101/</guid>
+      <description>เกริ่นนำ ถึงแม้ว่า Unity จะมีเครื่องมือพื้นฐานมาให้เราใช้พอสมควร แต่บางทีเราต้องการเครื่องมือที่เฉพาะเจาะจงกับเกมของเรามากๆ เพื่อช่วยให้การพัฒนาเกมของเรา มีความรวดเร็วและสะดวกมากยิ่งขึ้น ซึ่งเราสามารถเพิ่มความสามารถของ Editor ด้วย Custom Editor
+ใช้ &amp;ldquo;ExecuteInEditMode&amp;rdquo; ได้มะ? ExecuteInEditMode attribute เป็นวิธีที่ง่ายที่สุดที่จะทำให้ script ของเราทำงานใน Editor
+using UnityEngine; [ExecuteInEditMode] public class Log : MonoBehaviour { void Update() { Debug.Log(&amp;quot;Editor cause this update.&amp;quot;); } }  แต่เราทำอะไรไม่ได้มาก ไม่สามารถปรับแต่งอะไรในส่วนของ UI ใน Editor อย่างเช่น ตัว Inspector ได้ เหมาะกับเวลาที่เราต้องการอยากจะเห็นผลลัพธ์ ตอนอยู่ใน Editor มากกว่าที่จะสร้างเป็นเครื่องมือไว้ใช้เองใน Editor
+Hello World (Custom Menu) Script จะต้องอยู่ใน folder ที่ชื่อว่า &amp;ldquo;Editor&amp;rdquo;
+หากยังไม่มี ให้สร้าง folder ขึ้นมาใหม่ก่อน โดยผมจะสร้าง folder ไว้ที่ &amp;ldquo;Assets/Editor&amp;rdquo;</description>
+    </item>
     
     <item>
       <title>สวัสดีจ้า</title>

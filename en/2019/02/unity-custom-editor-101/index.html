@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="th">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 
+			
+  
+    <meta name="twitter:card" content="summary"/>
+    
+      <meta name="twitter:image" content="https://csaratakij.github.io/images/avatar.png" />
+    
+  
+  
+  <meta name="twitter:title" content="Unity - Custom Editor 101"/>
+  <meta name="twitter:description" content="Introduction Even though, Unity has a lot of standard tools. There is a time when we want to speed up our development. We need the tools that understand our game to make ourself more comfortable. That&rsquo;s why we want to extend our Unity Editor. Introduces &ldquo;Custom Editor&rdquo;
+What about &ldquo;ExecuteInEditMode&rdquo;? ExecuteInEditMode attribute is the easiests way to make script run in Editor
+using UnityEngine; [ExecuteInEditMode] public class Log : MonoBehaviour { void Update() { Debug."/>
+  
+  
+  
+  
+    <meta name="twitter:creator" content="@CSaratakij"/>
+  
+
+
+
+		
+		<meta name="author" content="CSaratakij">
+		<meta name="description" content="Site about game development and stuff I interest">
+		<meta name="generator" content="Hugo 0.53" />
+		<title>Unity - Custom Editor 101 &middot; CSaratakij</title>
+		<link rel="shortcut icon" href="https://csaratakij.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://csaratakij.github.io/css/style.css">
+		<link rel="stylesheet" href="https://csaratakij.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://csaratakij.github.io/css/font-awesome.min.css">
+		
+
+		
+		<link href="https://csaratakij.github.io/index.xml" rel="alternate" type="application/rss+xml" title="CSaratakij" />
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+    
+        <a href='/en'> <span class="arrow">←</span>Home</a>
+	
+	<a href='/en/posts'>Archive</a>
+	<a href='/en/tags'>Tags</a>
+	<a href='/en/about'>About</a>
+
+	
+
+    
+
+
+    
+        <a class="cta" href="https://csaratakij.github.io/th/2019/02/unity-custom-editor-101/">th</a>
+    
+
+
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        Unity - Custom Editor 101
+                    </h1>
+                    <h2 class="headline">
+                    Feb 1, 2019 18:50
+                    · 396 words
+                    · 2 minute read
+                      <span class="tags">
+                      
+                      
+                          
+                          
+                              <a href="/en/tags/unity">unity</a>
+                          
+                          
+                              <a href="/en/tags/custom-editor">custom-editor</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                  
+                    <div id="toc">
+                      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#what-about-executeineditmode">What about &ldquo;ExecuteInEditMode&rdquo;?</a></li>
+<li><a href="#hello-world-custom-menu">Hello World (Custom Menu)</a></li>
+<li><a href="#let-s-make-something-useful">Let&rsquo;s make something useful</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul></li>
+</ul>
+</nav>
+                    </div>
+                  
+                
+                <section id="post-body">
+                    
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Even though, Unity has a lot of standard tools. There is a time when we want to speed up our development.
+We need the tools that understand our game to make ourself more comfortable. That&rsquo;s why we want to extend our Unity Editor.
+Introduces &ldquo;Custom Editor&rdquo;</p>
+
+<h2 id="what-about-executeineditmode">What about &ldquo;ExecuteInEditMode&rdquo;?</h2>
+
+<p><strong>ExecuteInEditMode</strong> attribute is the easiests way to make script run in Editor</p>
+
+<pre><code>using UnityEngine;
+
+[ExecuteInEditMode]
+public class Log : MonoBehaviour
+{
+    void Update()
+    {
+        Debug.Log(&quot;Editor cause this update.&quot;);
+    }
+}
+</code></pre>
+
+<p>But we can&rsquo;t do much. It can&rsquo;t modify the way UI is draw in the Editor.<br />
+It suits for a simple script that we want to see its result during the Editor, Not suit for a tools that we will use in the Editor.</p>
+
+<h2 id="hello-world-custom-menu">Hello World (Custom Menu)</h2>
+
+<p><strong>Script</strong> must be in the folder name <strong>&ldquo;Editor&rdquo;</strong><br />
+If there is no exists folder, you have to create one. I&rsquo;ll create that folder in &ldquo;Assets/Editor&rdquo;.
+Then, We&rsquo;ll try to create a Custom Menu.
+When we select this menu, It&rsquo;ll show a simple dialog.</p>
+
+<pre><code>//Greet.cs
+using UnityEngine;
+using UnityEditor;
+
+public class Greet : MonoBehaviour
+{
+    [MenuItem(&quot;Custom/Greet&quot;)]
+    static void ShowGreetDialog()
+    {
+        EditorUtility.DisplayDialog(&quot;Greet&quot;, &quot;Hello World~&quot;, &quot;Okay&quot;, &quot;&quot;);
+    }
+}
+</code></pre>
+
+<p>If we go to the Menu &ldquo;Custom &gt; Greet&rdquo;, Dialog will greet to us. hooray~ xD</p>
+
+<h2 id="let-s-make-something-useful">Let&rsquo;s make something useful</h2>
+
+<p>Every game project, There are atleast the folders &ldquo;Script, Scenes, Prefabs, etc..&rdquo;<br />
+Let&rsquo;s make a script to auto create these folders.</p>
+
+<pre><code>//FolderTemplate.cs
+using UnityEngine;
+using UnityEditor;
+
+public class FolderTemplate : MonoBehaviour
+{
+    const string PARENT_FOLDER = &quot;Assets&quot;;
+    static readonly string[] Folders = {
+        &quot;Sprites&quot;,
+        &quot;Scenes&quot;,
+        &quot;Scripts&quot;,
+        &quot;Sound&quot;,
+        &quot;Prefabs&quot;
+    };
+
+    [MenuItem(&quot;Custom/FolderTemplate/Create new template folders %#F12&quot;)]
+    static void CreateFolderTemplate()
+    {
+        bool isConfirmCreate = EditorUtility.DisplayDialog(
+                        &quot;Warning&quot;,
+                        &quot;Are you sure to create a folders?&quot;,
+                        &quot;Yes&quot;,
+                        &quot;No&quot;);
+
+        if (!isConfirmCreate)
+            return;
+
+        foreach (string path in Folders) {
+            bool isFolderExist = AssetDatabase.IsValidFolder(PARENT_FOLDER + &quot;/&quot; + path);
+
+            if (isFolderExist)
+                continue;
+
+            AssetDatabase.CreateFolder(PARENT_FOLDER, path);
+        }
+    }
+}
+</code></pre>
+
+<p>If we press <strong>Ctrl+Shift+F12</strong>, The confirm create folders dialog will appears.<br />
+After press &ldquo;Yes&rdquo;, Each folder name in array &ldquo;Folders&rdquo; will create in the Assets folder.<br />
+It will skip an exists one.</p>
+
+<hr />
+
+<h2 id="summary">Summary</h2>
+
+<p>As you can see, Custom Editor is not as hard as you think.<br />
+The rule is, script need to be in the folder name &ldquo;Editor&rdquo;.<br />
+In <strong>Unity - Custom Editor Script 101</strong>, We focus on <strong>Custom Menu</strong>.<br />
+There are <strong>Custom Inspector</strong>, <strong>Editor Window</strong> and <strong>Scene View</strong> left.<br />
+We&rsquo;ll discuss those stuff later..</p>
+
+                </section>
+            </article>
+
+            
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fcsaratakij.github.io%2fen%2f2019%2f02%2funity-custom-editor-101%2f - Unity%20-%20Custom%20Editor%20101 "><span class="icon-twitter"> tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="mailto:CSaratakij@gmail.com">
+        <i class="fa fa-envelope"></i>
+    </a>
+    
+    <a class="symbol" href="https://www.facebook.com/CSaratakij">
+        <i class="fa fa-facebook-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://csaratakij.itch.io">
+        <i class="fa fa-gamepad"></i>
+    </a>
+    
+    <a class="symbol" href="https://www.github.com/CSaratakij">
+        <i class="fa fa-github"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> CSaratakij
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+
+        </section>
+
+        <script src="https://csaratakij.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://csaratakij.github.io/js/main.js"></script>
+<script src="https://csaratakij.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+    </body>
+</html>
