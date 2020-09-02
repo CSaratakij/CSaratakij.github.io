@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Custom Editor on CSaratakij</title>
+    <link>https://csaratakij.github.io/tags/custom-editor/</link>
+    <description>Recent content in Custom Editor on CSaratakij</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>CSaratakij © {year}</copyright>
+    <lastBuildDate>Wed, 02 Sep 2020 09:15:47 +0700</lastBuildDate>
+    
+	<atom:link href="https://csaratakij.github.io/tags/custom-editor/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HierachySection</title>
+      <link>https://csaratakij.github.io/projects/hierachysection/</link>
+      <pubDate>Wed, 02 Sep 2020 09:14:55 +0700</pubDate>
+      
+      <guid>https://csaratakij.github.io/projects/hierachysection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Board Game Path Finding</title>
+      <link>https://csaratakij.github.io/projects/board-game-path-finding/</link>
+      <pubDate>Wed, 02 Sep 2020 09:15:47 +0700</pubDate>
+      
+      <guid>https://csaratakij.github.io/projects/board-game-path-finding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Doppelganger</title>
+      <link>https://csaratakij.github.io/projects/doppelganger/</link>
+      <pubDate>Wed, 02 Sep 2020 09:11:33 +0700</pubDate>
+      
+      <guid>https://csaratakij.github.io/projects/doppelganger/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

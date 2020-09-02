@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Win32api on CSaratakij</title>
+    <link>https://csaratakij.github.io/tags/win32api/</link>
+    <description>Recent content in Win32api on CSaratakij</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>CSaratakij © {year}</copyright>
+    <lastBuildDate>Wed, 02 Sep 2020 09:15:14 +0700</lastBuildDate>
+    
+	<atom:link href="https://csaratakij.github.io/tags/win32api/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MyWinBar</title>
+      <link>https://csaratakij.github.io/projects/mywinbar/</link>
+      <pubDate>Wed, 02 Sep 2020 09:15:14 +0700</pubDate>
+      
+      <guid>https://csaratakij.github.io/projects/mywinbar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MyWinTiles</title>
+      <link>https://csaratakij.github.io/projects/mywintiles/</link>
+      <pubDate>Wed, 02 Sep 2020 09:15:04 +0700</pubDate>
+      
+      <guid>https://csaratakij.github.io/projects/mywintiles/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

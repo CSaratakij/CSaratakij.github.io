@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ludumdare on CSaratakij</title>
+    <link>https://csaratakij.github.io/tags/ludumdare/</link>
+    <description>Recent content in Ludumdare on CSaratakij</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>CSaratakij © {year}</copyright>
+    <lastBuildDate>Wed, 02 Sep 2020 09:14:37 +0700</lastBuildDate>
+    
+	<atom:link href="https://csaratakij.github.io/tags/ludumdare/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hack and Turn</title>
+      <link>https://csaratakij.github.io/projects/hack-and-turn/</link>
+      <pubDate>Wed, 02 Sep 2020 09:14:37 +0700</pubDate>
+      
+      <guid>https://csaratakij.github.io/projects/hack-and-turn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pepper Bell Must Be Grilled</title>
+      <link>https://csaratakij.github.io/projects/pepper-bell-must-be-grilled/</link>
+      <pubDate>Wed, 02 Sep 2020 09:14:31 +0700</pubDate>
+      
+      <guid>https://csaratakij.github.io/projects/pepper-bell-must-be-grilled/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

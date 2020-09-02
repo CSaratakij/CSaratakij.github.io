@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Global Game Jam on CSaratakij</title>
+    <link>https://csaratakij.github.io/tags/global-game-jam/</link>
+    <description>Recent content in Global Game Jam on CSaratakij</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>CSaratakij © {year}</copyright>
+    <lastBuildDate>Wed, 02 Sep 2020 09:14:50 +0700</lastBuildDate>
+    
+	<atom:link href="https://csaratakij.github.io/tags/global-game-jam/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Potto Need Water</title>
+      <link>https://csaratakij.github.io/projects/potto-need-water/</link>
+      <pubDate>Wed, 02 Sep 2020 09:14:50 +0700</pubDate>
+      
+      <guid>https://csaratakij.github.io/projects/potto-need-water/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
