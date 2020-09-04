@@ -28,7 +28,7 @@
   
   
     
-    <link type="text/css" rel="stylesheet" href="/css/post.min.2cb93c91050d1853bf971cc31e00122edd6e0f405aa1de3b7f8ef67ea3b5a79a.css" integrity="sha256-LLk8kQUNGFO/lxzDHgASLt1uD0Baod47f472fqO1p5o="/>
+    <link type="text/css" rel="stylesheet" href="/css/post.min.de1463cdda2e8900da531c8499bc4e4bf0e9a5c49301e66402b46abbc21e0875.css" integrity="sha256-3hRjzdouiQDaUxyEmbxOS/DppcSTAeZkArRqu8IeCHU="/>
   
     
     <link type="text/css" rel="stylesheet" href="/css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU="/>
@@ -95,6 +95,146 @@
           </header>
           <article class="post__content">
               
+<p><img src="/dg-cover.png" alt="Doppelganger"></p>
+<p>game: <a href="https://csaratakij.itch.io/doppelganger">https://csaratakij.itch.io/doppelganger</a><br>
+walkthrough: <a href="https://www.youtube.com/watch?v=t01DpSmG0PQ">https://www.youtube.com/watch?v=t01DpSmG0PQ</a><br>
+respository: <a href="https://github.com/CSaratakij/DG-Script-Only">https://github.com/CSaratakij/DG-Script-Only</a><br>
+responsible: game system</p>
+<p>other member:<br>
+<a href="mailto:nutthanlekprasan@outlook.co.th">Nutthan Lekprasan</a> (game designer)<br>
+<a href="mailto:jetniphatoat@gmail.com">Jetniphat Likhitwatthanasakun</a> (artist)</p>
+<h2 id="introduction">Introduction<a class="anchor" href="#introduction">#</a></h2>
+<p>Before you read any further, I have to warn you. There are some <strong>spoiler</strong> of the puzzle in this game. Please play the game first to avoid any spoiler.</p>
+<p>This game is the entry for <strong>The Twentieth National Software Contest: NSC 2018</strong>. We manage to get the <strong>2nd runner up</strong> in <em><strong>&ldquo;Program for entertainment&rdquo;</strong></em> .</p>
+<p>We have about 3 months to finish this project.</p>
+<p>Since I mainly do a game system and some of the game design, I will cover these topics with in depth. However, I will leave the art aspect to the
+artist himself.</p>
+<h2 id="why-this-game-call-doppelganger">Why this game call &ldquo;Doppelganger&rdquo;<a class="anchor" href="#why-this-game-call-doppelganger">#</a></h2>
+<p>If you already play the game, you will notice that there isn&rsquo;t a single doppelganger in this game.
+We name this game <strong>&ldquo;Doppelganger&rdquo;</strong> at first because we want the game to do something about a clone of our player character.</p>
+<p>Turns out, none of the things we discuss in the early stage made it into the final product.
+Most of the things in the game come from a first month we made doing a rappid prototype and play testing a lot.</p>
+<p>But this is the entry for the contest, We cannot change our name mid-way due to the proposal we sent during the first round of the competition. So we kinda have to live with that.</p>
+<h2 id="the-origin-of-the-focus-ability">The origin of the &ldquo;Focus&rdquo; ability<a class="anchor" href="#the-origin-of-the-focus-ability">#</a></h2>
+<p><img src="/dg-focus.png" alt="focus ability"></p>
+<p>Once we decide this is gonna be a 2d side scroller, I finish implementing the player controller shortly after that.
+But there is no core gameplay loop yet. So I have to experiment something quick.</p>
+<p>During that time, I saw a game that playing with a clone of player concept like our early idea.
+I don&rsquo;t remember the exact name of this game, but the mechanic is very similar to <strong>&ldquo;Binary Land&rdquo;</strong>.</p>
+<p>That is when I realized, I actually didn&rsquo;t think about this enough. So I start looking for the inspiration in <a href="https://itch.io">itch.io</a>.</p>
+<p>After playing a bunch of weird game, One of the idea come up to my mind.</p>
+<p>I remember playing some space shooter game that have a wrapping machanic.
+If you go near the end of the screen, you will wrap yourself back to the opposite side of the screen you came from.</p>
+<p>I think this is quite interesting, what if a 2d side scroller can do that?<br>
+So, I do a quick prototype and make our play testing.</p>
+<p>We kinda have a short discussion about how this can work with our doppelganger idea.</p>
+<p>Then one of my team notice the similarity in the game that already publish.
+That game is <a href="https://store.steampowered.com/app/337490/Four_Sided_Fantasy/">Four Sided Fantasy</a> (<strong>Damn</strong>&hellip;It&rsquo;s hard to be original these day).</p>
+<p>Actually, I don&rsquo;t mind if this game is similar to that game and I really like this mechanic.
+But I have to keep exploring this deeper to see the other possibility, What cools thing we can do if player have an ability to wrap themself?</p>
+<p>One of the thing I remember experiment with was&hellip;</p>
+<p>&quot; What if the world wrapping box place outside of the player and it isn&rsquo;t the thing that player can control and it just sit there in the level? &quot;<br>
+<figure>
+    <img src="/dg-no-cake.jpg"
+         alt="(Sorry, no cake for you)"/> <figcaption>
+            <p>(Sorry, no cake for you)</p>
+        </figcaption>
+</figure>
+</p>
+<p>There is other problem as well, the gating problem.</p>
+<p><strong>Gating</strong> is how the game limit the player progression, in this case is how to prevent player to bypass our obstacle with ease.</p>
+<p>The normal obstacle in the 2d side scroller is the height of the wall. But the world wrapping mechanic is really an over power ability.
+It can bypass this type of obstacle easily and making it harder to design the game level around this.</p>
+<p>This is especially true if the world wrapping box size itself fit to the entire screen.
+So, I decide to just nerf this ability.</p>
+<p>Instead of making it fit to the whole screen, Why not shrink it down to the smaller size and just place those world wrapping box at the center of the player.</p>
+<p>I make a play testing again, and give this prototype to our game designer.</p>
+<p>I let him come up with the combination of the level with this over power ability in mind. (a lot of his levels appear in the final product as well)</p>
+<p>Once I tested, I quickly realized&hellip;</p>
+<p>&ldquo;You know what?, this <strong>world wrapping mechanic</strong> can make the typical puzzle in <strong>puzzle platformer</strong> much more <strong>interesting</strong>.&rdquo;</p>
+<p>So I decide to combine puzzle platformer with the world wrapping mechanic (focus), and it turns out to be fun.</p>
+<p>Now we have a core gameplay loop.</p>
+<p>A short term goals of the player is to figure out how to keep progressing further by solving the well place obstacle with a focus ability.</p>
+<p>At the end, our entire month was gone. But we have a strong starting point and an interesting mechanic worth exploring.</p>
+<h2 id="things-that-i-implemented">Things that I implemented<a class="anchor" href="#things-that-i-implemented">#</a></h2>
+<p>This is the technical aspect of the project and it&rsquo;s really long.
+If you aren&rsquo;t interested in this topic, you can skip to <a href="#how-we-design-a-game-pacing">How we design a game pacing</a> .</p>
+<h3 id="game-system">Game System<a class="anchor" href="#game-system">#</a></h3>
+<h4 id="player-controller-dont-forget-about-one-way-collision-wall-jump-how-it-move-during-moving-platform-push-pull-box-footstep">Player Controller (don&rsquo;t forget about one way collision, wall jump?, how it move during moving platform, push pull box, footstep)</h4>
+<h4 id="gamepad-support-xinput">GamePad support (XInput)</h4>
+<h4 id="camera-controller-camera-trigger-avoid-blind-jump-in-platformer--cinematic-cutscene-trigger">Camera Controller (Camera Trigger (avoid blind jump in platformer &amp; cinematic cutscene trigger))</h4>
+<h4 id="world-wrapping-mechanic-focusdont-forget-about-the-sprite-mask-box-effect-by-focus">World Wrapping Mechanic (Focus)(don&rsquo;t forget about the sprite mask, box effect by focus)</h4>
+<h4 id="game-progress">Game Progress</h4>
+<h4 id="door--switch">Door &amp; Switch</h4>
+<h4 id="moving-platform">Moving Platform</h4>
+<h4 id="collectable">Collectable</h4>
+<h4 id="loading-screen">Loading Screen</h4>
+<h4 id="game-cinematic">Game Cinematic</h4>
+<p>(explain about this section)</p>
+<h3 id="custom-editor">Custom Editor<a class="anchor" href="#custom-editor">#</a></h3>
+<p>(explain about this section)</p>
+<h4 id="save-id-generator">Save ID Generator</h4>
+<h4 id="collision--collider-plotter">Collision &amp; Collider Plotter</h4>
+<h4 id="sprite-plotter">Sprite Plotter</h4>
+<p>This is the tools</p>
+<h4 id="scene-selector">Scene Selector</h4>
+<h2 id="how-we-design-a-game-pacing">How we design a game pacing<a class="anchor" href="#how-we-design-a-game-pacing">#</a></h2>
+<p>(the overall design of phase and the chart of difficulty &amp; the period of the phase)
+(don&rsquo;t forget to warn about spoiler alert in our game pacing design, how you teach player on spot of how focus works and how box puzzle works)
+(how you teach player to grab &amp; push box)</p>
+<p>Once we finished interating a lot of levels and decide which level to keep in the game,
+we connect all the levels based on their difficulty and start play testing from the beginning of the game.</p>
+<p>Not only to estimate how much time player need to complete this game, but also wanted to see how each level feels when connect to each other.</p>
+<p>We re-arrange the order of each level if it necessary and take a note when player starting to feels repetitive.</p>
+<p>Then we introduce the new ability or some shift in the game mechanic when player feels repetitive the most.</p>
+<p>This image is a rough approximate of how this game pacing works.
+[image here]</p>
+<p>I strongly disagree about front-load tutorial, so the first two phase of the
+game was crafted with the extra care to make sure that I introduce player to the game properly.</p>
+<h3 id="beginning-phase">Beginning Phase<a class="anchor" href="#beginning-phase">#</a></h3>
+<p>(familar with the input &amp; how the player controller works)
+(1. open space to the right guide player to moving to the right)
+(2. height wall to force player to press a longer jump)
+(3. Cat remind player to go to the right, make this a long term goal)</p>
+<h3 id="tutorial-phase">Tutorial Phase<a class="anchor" href="#tutorial-phase">#</a></h3>
+<p>(introduce to the main mechanic, the focus and make a box to open the
+door. keep occasionally remind player about how focus works and what the
+limit it is, how spacing of the player impact how focus works)
+(1. Teach about box and remind about long jump)
+(2. Teach about focus)
+(3. Teach about the limit of the focus ability)</p>
+<h3 id="increase-difficulty-to-the-highest">Increase difficulty to the highest<a class="anchor" href="#increase-difficulty-to-the-highest">#</a></h3>
+<p>(throw more stuff to the player, introduce new ability along the way, make
+player do some timing required and throw the most difficulty puzzle to the
+player in which player need to master this mechanic to solve it properly)
+(1. Make player play with a timing)
+(2. Introduce the new ability (Move mode))
+(3. Box effect by focus)
+(4. Introduce the new ability (Edit mode))
+(5. Present with the highest difficulty)</p>
+<h3 id="slowly-decrease-difficulty-to-the-end">Slowly Decrease difficulty to the end<a class="anchor" href="#slowly-decrease-difficulty-to-the-end">#</a></h3>
+<p>(slowly decrease difficulty after the hardest difficulty puzzle, and
+sudden drop in difficulty as the player reach to the final level)
+(1. Box move along the moving platform)
+(2. mundane puzzle as the final level)</p>
+<h2 id="getting-the-most-out-of-final-round">Getting the most out of final round<a class="anchor" href="#getting-the-most-out-of-final-round">#</a></h2>
+<p>In the final round, we have only 10 days left to complete this project.<br>
+So we decide to make the most out of it.</p>
+<p>One issue that keep ourself to not work as fast as we would like to be is how we keep forgetting how much work left for us to do.</p>
+<p>And there isn&rsquo;t a way to tell each person progress, unless we ask each other.</p>
+<p>That&rsquo;s why we spent a whole day to just listing all of our work and adapt a kanban board.</p>
+<p>Our kanban board rules are simple.<br>
+We have <strong>Backlog</strong>, <strong>Todo</strong>, <strong>In-Progress</strong> and <strong>Done</strong>.</p>
+<p><strong>Backlog:</strong> is for the task that we need to complete, but it isn&rsquo;t the main focus right now.</p>
+<p><strong>Todo:</strong> is for the task that we currently focus. You can put 3 tasks at the maximum into this section.</p>
+<p><strong>In-Progress:</strong> is for the task that currently working on. You can put only 1 task at the time into this section.
+And you have to remove the task from this section if you stop or finish
+the task.</p>
+<p><strong>Done:</strong> is for the complete task.</p>
+<p>With this board, we can finish most of the necessary task.<br>
+You can view the board <a href="https://trello.com/b/hVPRrx2p/dg-frame">here</a> .</p>
+<h2 id="conclusion">Conclusion<a class="anchor" href="#conclusion">#</a></h2>
+<p>(TODO) Shout out to my team, This project won&rsquo;t be possible without them.</p>
 
 
               
@@ -163,6 +303,33 @@
           </div>
       </div>
       
+      <div class="toc-container">
+          
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#why-this-game-call-doppelganger">Why this game call &ldquo;Doppelganger&rdquo;</a></li>
+    <li><a href="#the-origin-of-the-focus-ability">The origin of the &ldquo;Focus&rdquo; ability</a></li>
+    <li><a href="#things-that-i-implemented">Things that I implemented</a>
+      <ul>
+        <li><a href="#game-system">Game System</a></li>
+        <li><a href="#custom-editor">Custom Editor</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-we-design-a-game-pacing">How we design a game pacing</a>
+      <ul>
+        <li><a href="#beginning-phase">Beginning Phase</a></li>
+        <li><a href="#tutorial-phase">Tutorial Phase</a></li>
+        <li><a href="#increase-difficulty-to-the-highest">Increase difficulty to the highest</a></li>
+        <li><a href="#slowly-decrease-difficulty-to-the-end">Slowly Decrease difficulty to the end</a></li>
+      </ul>
+    </li>
+    <li><a href="#getting-the-most-out-of-final-round">Getting the most out of final round</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+      </div>
+      
     </div>
     
 
@@ -180,6 +347,8 @@
   <script src="https://unpkg.com/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js"
     data-autoloader-path="https://unpkg.com/prismjs@1.20.0/components/"></script>
 
+  
+    <script src="/js/table-of-contents.js"></script>
   
 
 
