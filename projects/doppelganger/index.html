@@ -96,16 +96,18 @@
           <article class="post__content">
               
 <p><img src="/dg-cover.png" alt="Doppelganger"></p>
+<p>[a short description of what this project is about here]</p>
 <p>game: <a href="https://csaratakij.itch.io/doppelganger">https://csaratakij.itch.io/doppelganger</a><br>
 walkthrough: <a href="https://www.youtube.com/watch?v=t01DpSmG0PQ">https://www.youtube.com/watch?v=t01DpSmG0PQ</a><br>
-respository: <a href="https://github.com/CSaratakij/DG-Script-Only">https://github.com/CSaratakij/DG-Script-Only</a><br>
-responsible: game system</p>
+respository: <a href="https://github.com/CSaratakij/DG-Script-Only">https://github.com/CSaratakij/DG-Script-Only</a></p>
+<p>responsible: game system</p>
 <p>other member:<br>
 <a href="mailto:nutthanlekprasan@outlook.co.th">Nutthan Lekprasan</a> (game designer)<br>
 <a href="mailto:jetniphatoat@gmail.com">Jetniphat Likhitwatthanasakun</a> (artist)</p>
 <h2 id="introduction">Introduction<a class="anchor" href="#introduction">#</a></h2>
 <p>Before you read any further, I have to warn you. There are some <strong>spoiler</strong> of the puzzle in this game. Please play the game first to avoid any spoiler.</p>
-<p>This game is the entry for <strong>The Twentieth National Software Contest: NSC 2018</strong>. We manage to get the <strong>2nd runner up</strong> in <em><strong>&ldquo;Program for entertainment&rdquo;</strong></em> .</p>
+<p>This game is the entry for <strong>The Twentieth National Software Contest: NSC 2018</strong>.
+We manage to get the <strong>2nd runner up</strong> in <em><strong>&ldquo;Program for entertainment&rdquo;</strong></em> .</p>
 <p>We have about 3 months to finish this project.</p>
 <p>Since I mainly do a game system and some of the game design, I will cover these topics with in depth. However, I will leave the art aspect to the
 artist himself.</p>
@@ -121,7 +123,7 @@ Most of the things in the game come from a first month we made doing a rappid pr
 But there is no core gameplay loop yet. So I have to experiment something quick.</p>
 <p>During that time, I saw a game that playing with a clone of player concept like our early idea.
 I don&rsquo;t remember the exact name of this game, but the mechanic is very similar to <strong>&ldquo;Binary Land&rdquo;</strong>.</p>
-<p>That is when I realized, I actually didn&rsquo;t think about this enough. So I start looking for the inspiration in <a href="https://itch.io">itch.io</a>.</p>
+<p>That&rsquo;s when I realized, I actually didn&rsquo;t think about this enough. So I start looking for the inspiration in <a href="https://itch.io">itch.io</a>.</p>
 <p>After playing a bunch of weird game, One of the idea come up to my mind.</p>
 <p>I remember playing some space shooter game that have a wrapping machanic.
 If you go near the end of the screen, you will wrap yourself back to the opposite side of the screen you came from.</p>
@@ -131,13 +133,13 @@ So, I do a quick prototype and make our play testing.</p>
 <p>Then one of my team notice the similarity in the game that already publish.
 That game is <a href="https://store.steampowered.com/app/337490/Four_Sided_Fantasy/">Four Sided Fantasy</a> (<strong>Damn</strong>&hellip;It&rsquo;s hard to be original these day).</p>
 <p>Actually, I don&rsquo;t mind if this game is similar to that game and I really like this mechanic.
-But I have to keep exploring this deeper to see the other possibility, What cools thing we can do if player have an ability to wrap themself?</p>
+But I have to keep exploring this deeper to see the other possibility, What cools thing we can do, if player have an ability to wrap themself?</p>
 <p>One of the thing I remember experiment with was&hellip;</p>
 <p>&quot; What if the world wrapping box place outside of the player and it isn&rsquo;t the thing that player can control and it just sit there in the level? &quot;<br>
 <figure>
     <img src="/dg-no-cake.jpg"
-         alt="(Sorry, no cake for you)"/> <figcaption>
-            <p>(Sorry, no cake for you)</p>
+         alt="( Sorry, no cake for you )"/> <figcaption>
+            <p>( Sorry, no cake for you )</p>
         </figcaption>
 </figure>
 </p>
@@ -161,23 +163,136 @@ So, I decide to just nerf this ability.</p>
 If you aren&rsquo;t interested in this topic, you can skip to <a href="#how-we-design-a-game-pacing">How we design a game pacing</a> .</p>
 <h3 id="game-system">Game System<a class="anchor" href="#game-system">#</a></h3>
 <h4 id="player-controller-dont-forget-about-one-way-collision-wall-jump-how-it-move-during-moving-platform-push-pull-box-footstep">Player Controller (don&rsquo;t forget about one way collision, wall jump?, how it move during moving platform, push pull box, footstep)</h4>
-<h4 id="gamepad-support-xinput">GamePad support (XInput)</h4>
-<h4 id="camera-controller-camera-trigger-avoid-blind-jump-in-platformer--cinematic-cutscene-trigger">Camera Controller (Camera Trigger (avoid blind jump in platformer &amp; cinematic cutscene trigger))</h4>
+<p><img src="/dg-player-controller.png" alt="player controller"></p>
+<p>(jumping, physic based. Fighting with physics)</p>
+<p>(check ground by overlap circle) (avoid alloc every fix time step by pre-alloc)</p>
+<p>(wall jump, ray cast to check wall with the same direction of the player
+facing, allow player to jump up about 63 degree)</p>
+<p>(one way collision by unity itself)</p>
+<p>(push pull box, overlap box (trigger area) to check player). Move by set its velocity)</p>
+<p>(footstep by cast down to the ground, see if there is a ground tag and
+play sound effect appropiate)</p>
+<h4 id="camera-system-camera-trigger-avoid-blind-jump-in-platformer--cinematic-cutscene-trigger-game-cinematic">Camera System (Camera Trigger (avoid blind jump in platformer &amp; cinematic cutscene trigger), game cinematic)</h4>
+<p><strong>Game Cinematic:</strong>(?)
+(explain about this section)</p>
 <h4 id="world-wrapping-mechanic-focusdont-forget-about-the-sprite-mask-box-effect-by-focus">World Wrapping Mechanic (Focus)(don&rsquo;t forget about the sprite mask, box effect by focus)</h4>
+<p>(This one is the hardest to implement, took me sometime to figure out.)</p>
+<h4 id="gamepad-support-xinput">GamePad support (XInput)</h4>
 <h4 id="game-progress">Game Progress</h4>
 <h4 id="door--switch">Door &amp; Switch</h4>
+<p><img src="/dg-door-and-switch.png" alt="door and switch"></p>
 <h4 id="moving-platform">Moving Platform</h4>
 <h4 id="collectable">Collectable</h4>
 <h4 id="loading-screen">Loading Screen</h4>
-<h4 id="game-cinematic">Game Cinematic</h4>
-<p>(explain about this section)</p>
+<h4 id="game-ui">Game UI</h4>
+<p>(TODO)
+Unity Canvas do the jobs nicely</p>
+<p>(TODO)
+I avoid Unity Event and its messaging system since it&rsquo;s slower than manually binding a native C# event.
+( Even though it&rsquo;s less convenient to setup )</p>
 <h3 id="custom-editor">Custom Editor<a class="anchor" href="#custom-editor">#</a></h3>
-<p>(explain about this section)</p>
+<p>Unity have a way to extend an editor to suit our project need.<br>
+We definitely take advantage of this.</p>
+<p>These are the tools I built to help reduce our development time.<br>
+We cannot hope to quickly iterate our levels and finish this project without these tools.</p>
 <h4 id="save-id-generator">Save ID Generator</h4>
+<p><img src="/dg-save-id-generator.png" alt="save id generator"></p>
+<p>This tools help ensuring our checkpoint will have a unique ID.</p>
+<p>Because we iterate a lot of levels in a short period of time, we keep adding, changing its location and removing the
+checkpoint overtime.</p>
+<p>Without this tools, we have to keep checking every checkpoint we place manually to make sure its ID will not conflict with each other.<br>
+(Which is really time consuming process)</p>
+<p>With this tools, we can check and re-generate every checkpoint ID in one click. This help ensuring our save and load system working properly.</p>
+<p>One of the problem I came across is how to make Unity save the
+change we made programmatically.</p>
+<p>To make this tools work, I have to push our change to the Unity undo stack.</p>
+<p>Once our change has pushed, It will set the Unity scene dirty and allow us
+to save the scene. (I learn this the hard way&hellip;)</p>
+<p>You can view the implementation <a href="https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/SaveSetting.cs">here</a> .</p>
 <h4 id="collision--collider-plotter">Collision &amp; Collider Plotter</h4>
+<p><img src="/dg-collision-plotter.png" alt="collision plotter"></p>
+<p>This tools help us create and delete our collision and collider quickly with ease.</p>
+<p>We need this tools because of the problem about the way Unity resolve its collision.</p>
+<p>Take a look at this example.</p>
+<p><img src="/dg-sprite-each-collision.png" alt="sprite have its own collision"></p>
+<p>As you can see, each of the sprite has its own box collider.</p>
+<p>The problem here is that, player will get stuck at some point when they try to walk on this type of the collider setup.</p>
+<p>Despite how it look, a bunch of smaller box collider cannot provide a seemless ground surface.</p>
+<p>Physics engine try to push away each pair of the collider when it detects the collision in each fixed update to prevent them from overlap to each other.</p>
+<p><img src="/dg-player-stuck-sample.png" alt="player stuck"></p>
+<p>To keep things simple, let assume there are the two possibilities at the moment player collider overlap to the edge of the ground collider.</p>
+<p><strong>Vertical Push</strong></p>
+<p><img src="/dg-push-to-vertical-arrow.png" alt="vertical push"></p>
+<p>As you can see, the length of overlapping in the horizontal axis is greater than the vertical axis.</p>
+<p>So, the quickest way to push each collider away from each other is by pushing them vertically.</p>
+<p><strong>Horizontal Push</strong></p>
+<p><img src="/dg-push-to-horizontal-arrow.png" alt="horizontal push"></p>
+<p>In this case, pushing each collider pair horizontally would be the quickest way to resolve this collision.</p>
+<p>But this also the cause of the player getting stuck, because player keep getting push back to the opposite way of the way they want their character to be move.</p>
+<p>For example, player might be able to walk in the right direction. But as soon as they start walking in the left direction, their character might get stuck.</p>
+<p>The ideas box collider setup would be a big box collider to make physics engine resolve collision correctly.</p>
+<p><img src="/dg-sprite-one-big-collision.png" alt="one big box collider"></p>
+<p>But, the box collider size also adjust to the same size of the sprite when you add its component to the sprite itself.</p>
+<p>So we have to seperate the collider from the sprite by making an empty game object attached with the box collider component.</p>
+<p>Placing this ideas box collider with an existing Unity tools is really time consuming.</p>
+<p>Not only we have to keep our box collider size right, we have to place this in the proper distance (make it snap to the grid).</p>
+<p>The way I do this is using the fact that I can construct a rectangle by using only two points.
+<img src="/dg-A-B.png" alt="construct rectangle by two points"></p>
+<p>And the grid itself is just the default Unity scene view grid.</p>
+<br/>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/5gCgzt1DCqA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>This tools also help us placing the necessary collider to represent the ground material to help playing the right sound of player footstep.</p>
+<p>You can view the implementation <a href="https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/CollisionPlotter.cs">here</a> .</p>
 <h4 id="sprite-plotter">Sprite Plotter</h4>
-<p>This is the tools</p>
+<p><img src="/dg-sprite-plotter.png" alt="sprite plotter"></p>
+<p>This tools help our artist to quickly place the tilesets.</p>
+<p>Since we use a pixel art style for this game, We need to make sure each sprite will align properly within the grid.</p>
+<p>At that time, Unity already have a tools to help place the tilesets.<br>
+Unfortunately, We don&rsquo;t want to use its solution.</p>
+<p>Not only it techically still in the beta, but also the amount of work we have to do in order to prepare our sprite is way too much for our use case.</p>
+<p>( We just want to snap our sprite to the grid, for god sake&hellip; )</p>
+<p>That&rsquo;s why this tools was created.<br>
+The placing sprite logic is similar to the <strong>Collision &amp; Collider
+Plotter</strong>.</p>
+<p>One issue I have to deal is to prevent too much waste in game object when placing the multiple sprites that use the same texture.</p>
+<p>Lucky for me, I can change the sprite draw mode to tile to make texture repeat itself to fit the size of the sprite.</p>
+<p>This help us reduce game object count to just one per multiple sprites.</p>
+<br/>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/f7WA2ed93RI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Later on, I add the brush profile to help group our tilesets together.
+Make it easier for the artist to choose the tilesets.</p>
+<p>This is possible by the fact that the assets need to generate its own Global Unique Identifier (GUID) when import to the project.</p>
+<p>So, I just need to retreive its asset guid then save it in the <a href="https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/Profile/dg_grid_preset.json">JSON</a> format.<br>
+You can view the implementation <a href="https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/SpritePlotter.cs">here</a> .</p>
 <h4 id="scene-selector">Scene Selector</h4>
+<p><img src="/dg-scene-selector.png" alt="scene selector"></p>
+<p>This tools help us play testing the game from the start without having to leave the current scene in the editor.</p>
+<p>This feature is what I wish to be built in to the Unity Editor.<br>
+But sadly, it&rsquo;s not&hellip;</p>
+<p>So, I have to implement this myself.</p>
+<p>Let&rsquo;s assume I set the scene name &ldquo;Introduction&rdquo; as the first scene in the build setting.</p>
+<p>But I open the scene name &ldquo;Level5&rdquo; in the editor.</p>
+<p>If I hit &ldquo;Play&rdquo; button in the editor, Unity by default will play a current scene.
+In this case, It&rsquo;s a &ldquo;Level5&rdquo; scene.</p>
+<p>If I want to start playing from the &ldquo;Introduction&rdquo; scene, I have to close
+the &ldquo;Level5&rdquo; scene first and then have to manually open the &ldquo;Introduction&rdquo; scene before entering the play mode.</p>
+<p>Which make me frustrated overtime.<br>
+So, this tools keeping me sane while repeatly play testing.</p>
+<br/>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/PaeOfl0nNyM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>You can view the implementation <a href="https://github.com/CSaratakij/SceneSelector">here</a> .</p>
 <h2 id="how-we-design-a-game-pacing">How we design a game pacing<a class="anchor" href="#how-we-design-a-game-pacing">#</a></h2>
 <p>(the overall design of phase and the chart of difficulty &amp; the period of the phase)
 (don&rsquo;t forget to warn about spoiler alert in our game pacing design, how you teach player on spot of how focus works and how box puzzle works)
@@ -187,8 +302,13 @@ we connect all the levels based on their difficulty and start play testing from 
 <p>Not only to estimate how much time player need to complete this game, but also wanted to see how each level feels when connect to each other.</p>
 <p>We re-arrange the order of each level if it necessary and take a note when player starting to feels repetitive.</p>
 <p>Then we introduce the new ability or some shift in the game mechanic when player feels repetitive the most.</p>
-<p>This image is a rough approximate of how this game pacing works.
-[image here]</p>
+<figure>
+    <img src="/dg-pacing.jpg"
+         alt="( This image is a rough approximate of how this game pacing works )"/> <figcaption>
+            <p>( This image is a rough approximate of how this game pacing works )</p>
+        </figcaption>
+</figure>
+
 <p>I strongly disagree about front-load tutorial, so the first two phase of the
 game was crafted with the extra care to make sure that I introduce player to the game properly.</p>
 <h3 id="beginning-phase">Beginning Phase<a class="anchor" href="#beginning-phase">#</a></h3>
@@ -217,6 +337,10 @@ player in which player need to master this mechanic to solve it properly)
 sudden drop in difficulty as the player reach to the final level)
 (1. Box move along the moving platform)
 (2. mundane puzzle as the final level)</p>
+<p>(TODO)
+So, at the end&hellip;.It turns out to be&hellip;.
+Can be finish in 10 minutes, if you know how to solve its puzzle.<br>
+not too long and too short.</p>
 <h2 id="getting-the-most-out-of-final-round">Getting the most out of final round<a class="anchor" href="#getting-the-most-out-of-final-round">#</a></h2>
 <p>In the final round, we have only 10 days left to complete this project.<br>
 So we decide to make the most out of it.</p>
