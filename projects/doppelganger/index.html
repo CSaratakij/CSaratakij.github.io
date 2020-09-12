@@ -95,8 +95,8 @@
           </header>
           <article class="post__content">
               
+<p>The puzzle platformer with a twist. Player can use a “Focus” power, the ability to bend a dimension to overcome the obstacle.</p>
 <p><img src="/dg-cover.png" alt="Doppelganger"></p>
-<p>[a short description of what this project is about here]</p>
 <p>game: <a href="https://csaratakij.itch.io/doppelganger">https://csaratakij.itch.io/doppelganger</a><br>
 walkthrough: <a href="https://www.youtube.com/watch?v=t01DpSmG0PQ">https://www.youtube.com/watch?v=t01DpSmG0PQ</a><br>
 respository: <a href="https://github.com/CSaratakij/DG-Script-Only">https://github.com/CSaratakij/DG-Script-Only</a></p>
@@ -107,8 +107,8 @@ respository: <a href="https://github.com/CSaratakij/DG-Script-Only">https://gith
 <h2 id="introduction">Introduction<a class="anchor" href="#introduction">#</a></h2>
 <p>Before you read any further, I have to warn you. There are some <strong>spoiler</strong> of the puzzle in this game. Please play the game first to avoid any spoiler.</p>
 <p>This game is the entry for <strong>The Twentieth National Software Contest: NSC 2018</strong>.
-We manage to get the <strong>2nd runner up</strong> in <em><strong>&ldquo;Program for entertainment&rdquo;</strong></em> .</p>
-<p>We have about 3 months to finish this project.</p>
+We have about <strong>3 months</strong> to finish this project.</p>
+<p>We manage to get the <strong>2nd runner up</strong> in <em><strong>&ldquo;Program for entertainment&rdquo;</strong></em> .</p>
 <p>Since I mainly do a game system and some of the game design, I will cover these topics with in depth. However, I will leave the art aspect to the
 artist himself.</p>
 <h2 id="why-this-game-call-doppelganger">Why this game call &ldquo;Doppelganger&rdquo;<a class="anchor" href="#why-this-game-call-doppelganger">#</a></h2>
@@ -159,37 +159,272 @@ So, I decide to just nerf this ability.</p>
 <p>A short term goals of the player is to figure out how to keep progressing further by solving the well place obstacle with a focus ability.</p>
 <p>At the end, our entire month was gone. But we have a strong starting point and an interesting mechanic worth exploring.</p>
 <h2 id="things-that-i-implemented">Things that I implemented<a class="anchor" href="#things-that-i-implemented">#</a></h2>
-<p>This is the technical aspect of the project and it&rsquo;s really long.
+<p>This is the technical aspect of the project and it&rsquo;s quite long.
 If you aren&rsquo;t interested in this topic, you can skip to <a href="#how-we-design-a-game-pacing">How we design a game pacing</a> .</p>
 <h3 id="game-system">Game System<a class="anchor" href="#game-system">#</a></h3>
-<h4 id="player-controller-dont-forget-about-one-way-collision-wall-jump-how-it-move-during-moving-platform-push-pull-box-footstep">Player Controller (don&rsquo;t forget about one way collision, wall jump?, how it move during moving platform, push pull box, footstep)</h4>
+<h4 id="player-controller">Player Controller</h4>
 <p><img src="/dg-player-controller.png" alt="player controller"></p>
-<p>(jumping, physic based. Fighting with physics)</p>
-<p>(check ground by overlap circle) (avoid alloc every fix time step by pre-alloc)</p>
-<p>(wall jump, ray cast to check wall with the same direction of the player
-facing, allow player to jump up about 63 degree)</p>
-<p>(one way collision by unity itself)</p>
-<p>(push pull box, overlap box (trigger area) to check player). Move by set its velocity)</p>
-<p>(footstep by cast down to the ground, see if there is a ground tag and
-play sound effect appropiate)</p>
-<h4 id="camera-system-camera-trigger-avoid-blind-jump-in-platformer--cinematic-cutscene-trigger-game-cinematic">Camera System (Camera Trigger (avoid blind jump in platformer &amp; cinematic cutscene trigger), game cinematic)</h4>
-<p><strong>Game Cinematic:</strong>(?)
-(explain about this section)</p>
+<p>This is the first thing I finished implementing.</p>
+<p>Without knowing what the game is gonna look like at first, I took an
+easiest way possible to approach this by making it based on the physics engine.</p>
+<p>In which you can call this a <strong>&ldquo;Physics based platformer&rdquo;</strong>.</p>
+<p>As the result, I have to fight the physics engine because in reallity the character wasn&rsquo;t behave
+in the way the normal physics would behave as the physics engine estimate.</p>
+<p>The better ways to do the platformer in general is to not rely on the
+physics engine and roll your own based on the specific need of your current project.</p>
+<p>All the physics based platformer suffer from the floatlyness in which is
+the feeling of not in control of character.</p>
+<p>Making the tight platformer controls by based around the physics engine
+it&rsquo;s just a brute force process of tweaking a multiple parameters of the physics engine to get the result closest to what you want.</p>
+<p>There is still a cost to pay, because the root cause of the floatlyness is
+not resolve.</p>
+<p>All you can do is to mitigate its effect.<br>
+Take a look at <a href="https://store.steampowered.com/app/504230/Celeste">Celeste</a>.</p>
+<p>One of the game that have a tight and satify player controller in the
+platformer genere.</p>
+<p>They need to nail this stuff, because in Celeste there are a ton of
+platform session that require a percise jump from the player.</p>
+<p>This is not possible if you based it around a physics engine.</p>
+<p>Lucky for me, this game is not really having a lot of the platform session
+and it didn&rsquo;t require a percise jump.</p>
+<p>This allow me to focus on the other aspect of the project without having
+to re-implement the player controller.</p>
+<p>Although, I love a tight control feeling of the platformer in general.
+(Like in <strong>Celeste</strong>)</p>
+<p>If I have a chance to remake this game, This will be the first thing I want to re-implement.</p>
+<p>Now, let&rsquo;s talk about the implementation detail of player controller.</p>
+<p><strong>Walking</strong></p>
+<p>Nothing fancy here.</p>
+<p>Just get the move direction from the input and move its character according to its move speed.</p>
+<p>Since I use the physics engine, I need to add a physics material and low
+the friction value to 0 to prevent its collider from getting stuck when character is in the air while bumping to the wall.</p>
+<p>The footstep sound effect will play while character moving around, and its sound effect will pick based on the game object tag that found by a simple raycast.</p>
+<p>As for the movement when staying on top of the platform, I translate character with the same velocity as the platform itself whenever
+player found a platform by overlap testing around the feet of character.</p>
+<p><strong>Jumping</strong></p>
+<p>There are low and high jump in this game.</p>
+<p>This is possible by manipulate a gravity based on the way player press their jump button.</p>
+<p><img src="/dg-jump-curve.jpg" alt="jump curve"></p>
+<p>Normally, player will experience a normal gravity.</p>
+<p>At the moment player starting to press the jump button, I will add the upward force to the character once.</p>
+<p>After that, I still checking for the key press but it won&rsquo;t add the force
+to the character anymore.</p>
+<p>If player keep holding down the jump button until the character starting
+to fall, player will experience the normal gravity.</p>
+<p>But if player release their jump button before the character reach to the highest jump possible,
+player will experience a higher gravity forcing the character to fall down sooner than it would normally be.</p>
+<p>As for the ground detection, I use overlap testing instead of the multiple
+raycast.</p>
+<p>The issue that come with this is I have to avoid unnecessary allocation at every fixed update cycle.</p>
+<p>Because, I don&rsquo;t want a Garbage Collector (GC) to kick in cleaning the
+stuff during gameplay making it look like a random freeze (spike) in the player perspective.</p>
+<p>So, I have to pre-allocate, make a buffer and change the overlap testing method to the stuff that support a buffer.</p>
+<p>The wall jumping mechanic is using a ray cast around a character feet to check if there is a wall at the same direction that player is currently
+facing.</p>
+<p>If it successfully detect the wall, player will get the additional jump at about 63 degree up.</p>
+<p>One way collision is using a built in Unity solution.</p>
+<p><strong>Push &amp; Pull box</strong></p>
+<p><img src="/dg-box-pull-push.png" alt="push and pull box"></p>
+<p>Push and pull box have two states.</p>
+<p><strong>Before grab</strong></p>
+<p>The box will have a mass different than a player character to prevent it from moving with a simple bump from the character collider.</p>
+<p>If player getting closer to a box, it will show which key to make player able to grab itself.</p>
+<p><strong>During grab</strong></p>
+<p>After player successfully grab a box, it will move along with the
+character.</p>
+<p>It will keep checking if player is still closer to the box by simply overlap testing.</p>
+<p>I have to keep testing it during fixed update cycle because the OnTriggerStay message is not a reliable way to test if something is still overlaping on something.</p>
+<p>The area of testing is draw by using a Gizmos, a yellow rectangle that
+surround the box.</p>
+<p>If player stop overlapping to the area of testing, I will stop player from grabbing a box.</p>
+<h4 id="camera-system">Camera System</h4>
+<p>I use orthogonal view as a default. ( Of course, It&rsquo;s a 2d game anyway )</p>
+<p>The reason I support only <strong>16:9 screen ratio</strong> is because this game puzzle is playing with a camera and design with this screen ratio as a default.</p>
+<p>At the moment player use the focus ability, the camera will freeze limit how much player will see the level.</p>
+<p>With this design choice, some of the game puzzle cannot be solve without this screen ratio.</p>
+<p>These are the things that I implement as a part of the camera system.</p>
+<p><strong>Camera Follow</strong></p>
+<p>This use mainly by a player controller but also by the game cinematic to
+make a camera focus and follow the target.</p>
+<p>It has an offset setting, mainly use to shift the camera upward to avoid too much wasted space of the screen when trying to focus on the player
+but didn&rsquo;t want the player to see much of the ground sprite.</p>
+<p>By combine offset setting with a camera trigger, it can be use to avoid
+a <strong>blind jump</strong> by shifting the camera to the appropriate offset within the given situation.</p>
+<p><strong>Blind Jump</strong> is a situation where player don&rsquo;t know where their character is gonna land if they starting to jump.</p>
+<p>As a platformer, it&rsquo;s best to avoid this situation at all cost.<br>
+Take a look at this image.</p>
+<p><img src="/dg-blind-jump.png" alt="blind jump example"></p>
+<p>How player gonna know where their character is gonna land if they initiate the jump to the right?</p>
+<p><strong>Camera Trigger</strong></p>
+<p>This use to change the camera setting and trigger the game cinematic when player enter the trigger area.</p>
+<p>The area is draw by Gizmos using a blue rectangle to represent the trigger area.</p>
+<p><img src="/dg-camera-offset-trigger.png" alt="camera offset trigger"></p>
+<p>I have to make it this large, because player can bypass a small area by using a focus ability.</p>
+<p><strong>Game Cinematic</strong></p>
+<p>This is a part of the camera system.</p>
+<p>At that time, the Unity Timeline tools which is suppose to help making a game cinematic easier is still in alpha.</p>
+<p>I play around with this tools a little bit and it sad to say that this tools is not gonna work at the time we develop this game.</p>
+<p>I kinda want to implement just a necessary feature like the thing in the Unity Timeline to help our life easier but we don&rsquo;t have a time to actually pull this off.</p>
+<p>So, I decide to just stick with a simple cinematic possible. Something like, just make a camera focusing on some target.</p>
+<p>This allow me to re-use our camera stuff like for example a <strong>Camera Follow</strong>.</p>
+<p>And other stuff that require a logic to work other than a camera in the
+game cinematic, I&rsquo;ll just code it specifically for that scene.</p>
+<p>And it works perfectly, I don&rsquo;t have to spend too much time on a game cinematic and have an extra time to do something else.</p>
 <h4 id="world-wrapping-mechanic-focusdont-forget-about-the-sprite-mask-box-effect-by-focus">World Wrapping Mechanic (Focus)(don&rsquo;t forget about the sprite mask, box effect by focus)</h4>
-<p>(This one is the hardest to implement, took me sometime to figure out.)</p>
-<h4 id="gamepad-support-xinput">GamePad support (XInput)</h4>
+<p><img src="/dg-focus-wrapping.png" alt="world wrapping mechanic"></p>
+<p>This one is the most challenge things to implement in this project, took me sometime to figure out.</p>
+<p>The actual world wrapping logic is not really that hard, but the hard thing is to come up with a general case for the ability itself.</p>
+<p>Because it shouldn&rsquo;t need to have a special case for a particular level.</p>
+<p>Anyone that responsible for placing a level itself shouldn&rsquo;t have to place some
+magic trigger at a specific place in the level to actually make this
+works.</p>
+<p>It should just work consistently with any level that we throw at it.</p>
+<p>Let&rsquo;s start with a basic of this ability, the focus (normal mode).</p>
+<p><strong>Normal Mode</strong></p>
+<p>The focus ability as a text is simple, It&rsquo;ll wrap player back to the opposite side of where they came from.</p>
+<p>But what it actually mean to wrap themself back?</p>
+<p>Take a look at this situation.</p>
+<p><img src="/dg-wrapping-problem.jpg" alt="wrapping problem"></p>
+<p>Assume the focus ability frame is cover the entire screen.
+If player going to point A, do they wrap themself back to point B?</p>
+<p>If they wrap themself back to point B, then how about this normal situation?</p>
+<p><img src="/dg-wrapping-diagonal.jpg" alt="diagonal wrap"></p>
+<p>If those assumption is correct, then does it mean the wrapping mechanic wrap player diagonally?</p>
+<p>In the player perspective, this looks weird.</p>
+<p>What player expect in this normal situation is to wrap themself horizontally.</p>
+<p><img src="/dg-wrapping-horizontal.jpg" alt="horizontal wrap"></p>
+<p>If I want to make the normal case to work as aspect, I have to think about the general case that will explain these two situation perfectly.</p>
+<p>And that general case is what I call the <strong>&ldquo;Absolute Wrapping&rdquo;</strong></p>
+<p><strong>Absolute Wrapping</strong> is an approach to look at this problem by taking the
+strong stand on the world wrapping.</p>
+<p>The idea is simple.</p>
+<p>If there is an empty space that player can fit through, player can wrap themself back regardless of the starting position of the player.</p>
+<p><img src="/dg-wrapping-one-approach.jpg" alt="wrapping approach one"></p>
+<p>For example. As long as there is an empty space, player can go to the opposite side in which the player start position&rsquo;s height
+don&rsquo;t have to be the same height after finish wrapping.</p>
+<p>But there is an issue with this approach.<br>
+Not the technical stuff, but the design decision.</p>
+<p>If I implement this in the Absolute Wrapping way, It&rsquo;s kinda broke the level.
+(Gating problem)</p>
+<p>This mechanic will be too powerful and can bypass any obstacle with ease.</p>
+<p>By making this ability too powerful, I accidentally downgrade this ability to be use as a gimmick.</p>
+<p>I want player to rely on the focus ability as the key to solve the
+puzzle.</p>
+<p>If this ability is not only easy to use but also make player not to think about the puzzle at all while activating this, It&rsquo;s kinda defeat the purpose of this game.</p>
+<p>Imagine you develop a game about lock picking.</p>
+<p>And from the start instead of giving player the lock picking tools, You give player the master key to unlock anything.
+(What&rsquo;s the point of the lock picking then?)</p>
+<p>But there is still a hope.<br>
+There is other way to think about the world wrapping.</p>
+<p><strong>KISS Wrapping</strong> or keep it simple (stupid) wrapping is the simpler way to world
+wrapping in which it will only wrap player per axis at a time.</p>
+<p><img src="/dg-wrapping-kiss.jpg" alt="wrapping kiss"></p>
+<p>For example. If player come from the left side, It will wrap player to the right side.</p>
+<p>But instead of looking for any potential empty space, the left and right is clearly the horizontal axis.</p>
+<p>So, It&rsquo;s gonna wrap player only x axis and keep the y axis as the same value before wrapping.</p>
+<p>This mean player cannot wrap themself to the other side when their height is not the same as the wrapping destination.</p>
+<p>The same thing also apply when player wrapping vertically.</p>
+<p>If player come from the lower side, it&rsquo;s gonna wrap player to the upper
+side while keep the x axis value.</p>
+<p>With this nerf, the gating problem is easier to solve. Allow us to make some interesting obstacle.</p>
+<p>But this approach also have its own set of problem, I cannot blindly wrap player.</p>
+<p>Because if I do, player will get stuck in other collider.
+Like a wall or a ground in player perspective.</p>
+<p><img src="/dg-wrapping-stuck.jpg" alt="stuck with wall while wrapping"></p>
+<p>So, I have to come up with a way to check if the wrapping destination is safe before beginning to wrap player.</p>
+<p>Now, let&rsquo;s dive into the implementation detail to see how it&rsquo;s done.</p>
+<p><strong>Wrapping Character Back</strong></p>
+<p>Assume the wrapping destination is safe.</p>
+<p>When half of character reach the edge of the focus frame,
+I&rsquo;ll set character a new position to the opposite side depending on the side of the focus that character enter.</p>
+<p>It&rsquo;s like character just do a teleportation.</p>
+<p><img src="/dg-focus-wrapping-01.png" alt="near the edge"></p>
+<p>The actual frame size of focus is store using the world coordinate position and its size (width, height).</p>
+<p>To mask character within the frame, I use the built in Sprite Mask.</p>
+<p>The sprite of mask itself is just a one unit sprite that scale its size to match the focus frame size at runtime.</p>
+<p>The solid frame is a built in Unity Line Renderer.</p>
+<p>And a necessary focus frame decoration at the edge of this frame is just a sprite that place at runtime by finding
+an edge world coordinate from the format that focus frame use.</p>
+<p><strong>Limit Wrapping Capability</strong></p>
+<p>There is a situation where character won&rsquo;t be safe to go to the wrapping destination.</p>
+<p>In this image, you can see the focus frame itself overlap to the wall
+on the left.</p>
+<p><img src="/dg-wall-stuck-explain.png" alt="wall stuck situation"></p>
+<p>When this happen, there is an invisible wall to prevent character from reaching the edge of the focus frame by a half of character.</p>
+<p>I will refer the invisible wall as a <strong>blocker</strong>.</p>
+<p><img src="/dg-blocker-01.jpg" alt="blocker"></p>
+<p><strong>Blocker</strong> is just a collider that I control its position during runtime.</p>
+<p>Since I use physics engine in <strong>Player Controller</strong>, I&rsquo;ll let physics engine handle the collision resolution between player character
+and the blocker.</p>
+<p>In the normal situation, there are blockers on each side of the focus frame.</p>
+<p><img src="/dg-blocker-02.jpg" alt="blocker with 4 axis"></p>
+<p>Each blocker will keep its distance away from focus frame to make sure player can do the world wrapping.</p>
+<p>To make thing simple, let&rsquo;s focus on just one blocker.</p>
+<p>In order to make sure that player can go to the wrapping destination,
+I have to make a quick overlap testing to see if there is enough space for this character to wrap.</p>
+<p>In this case, character come from the right side.</p>
+<p>So, I have to overlap testing on the left side which use the same width and height as the character to test other collider.</p>
+<p>[image that explain the concept here]</p>
+<p>If the testing pass, I&rsquo;ll leave the blocker away from the focus frame.</p>
+<p>But, If the overlap testing fail, I&rsquo;ll move the blocker as close as the focus frame to block player from moving closer to the edge of the focus.</p>
+<p>[image that explain the concept here]</p>
+<p>Not all blockers will be move, It&rsquo;ll pick only the blocker at the same side of the wrapping destination.</p>
+<p>But there is other interesting situation here.<br>
+What if there is enough space on the wrapping destination?</p>
+<p><img src="" alt="image about first tutorial about its limit here"></p>
+<p>If you guess player can freely move to the left side, then you wrong.</p>
+<p>Remember that the KISS Wrapping <strong>doesn&rsquo;t care</strong> about <strong>any potential empty space</strong>, It&rsquo;s care only if player can wrap to the other side.</p>
+<p>In this case, the area of overlap testing looks like this.</p>
+<p>[image here]</p>
+<p>As you can see, player wrapping horizontally.</p>
+<p>So, It&rsquo;s testing area will only care about x axis and keep the y axis.</p>
+<p>The result of overlap testing will fail, because it&rsquo;s overlap with a tiny ground collider at the right side.</p>
+<p>But, If player height change.<br>
+Now, the overlap testing area look like this.</p>
+<p>[image here]</p>
+<p>Overlap testing result will pass, this allow player to go to the wrapping destination by jumping to the left side.</p>
+<p>This is what it looks like in the Unity Editor.</p>
+<p>[video here..]</p>
+<p>The blocker will keep jumping back and forth between trying to block player and to not block player.</p>
+<p>But, there is a consequence.<br>
+The same thing apply to vertical axis.</p>
+<p>With this implementation, it allow us to do something like this.</p>
+<p><img src="/dg-build-ground.png" alt="wrapping general case consequence"></p>
+<p>Because player cannot go to the upper side, It&rsquo;s block player from going to the lower side.</p>
+<p>Accidentally, making a convenient ground for player.</p>
+<p><strong>Move Mode</strong></p>
+<p><img src="/dg-focus-movemode.png" alt="focus move mode"></p>
+<p>(check frame position, if it possible to place in that position (clamp to not geater than the whole viewport))
+(don&rsquo;t allow player to activated this ability when jump)</p>
+<p><strong>Edit Mode</strong>
+(image about edit mode here)
+(check frame position, if it possible to place in that position)</p>
+<p>(summary of world wrapping mechanic)
+(don&rsquo;t forget to box effect by focus)
+<img src="/dg-box-effect-by-focus.png" alt="box effect by focus"></p>
+<h4 id="gamepad-support">GamePad support</h4>
+<p>(XInput, Direct Input here (why use direct input as a fall back))
+(polling gamepad connection here..)</p>
 <h4 id="game-progress">Game Progress</h4>
+<p>(Json saving, miss oppotunity to save as async here&hellip;)
+(Save progress in runtime, serialize once)
+(Load on game start)</p>
 <h4 id="door--switch">Door &amp; Switch</h4>
 <p><img src="/dg-door-and-switch.png" alt="door and switch"></p>
 <h4 id="moving-platform">Moving Platform</h4>
+<p>(todo) This is the small price I have to pay for using physics based platformer.
+(kinematic and gizmos here&hellip;)</p>
 <h4 id="collectable">Collectable</h4>
-<h4 id="loading-screen">Loading Screen</h4>
+<p>(photo here.., integrate with game progress (system))</p>
 <h4 id="game-ui">Game UI</h4>
 <p>(TODO)
 Unity Canvas do the jobs nicely</p>
 <p>(TODO)
 I avoid Unity Event and its messaging system since it&rsquo;s slower than manually binding a native C# event.
 ( Even though it&rsquo;s less convenient to setup )</p>
+<h4 id="loading-screen">Loading Screen</h4>
+<p><img src="/dg-loading-screen.png" alt="loading screen">
+(load scene async make it possible)</p>
 <h3 id="custom-editor">Custom Editor<a class="anchor" href="#custom-editor">#</a></h3>
 <p>Unity have a way to extend an editor to suit our project need.<br>
 We definitely take advantage of this.</p>
@@ -197,7 +432,7 @@ We definitely take advantage of this.</p>
 We cannot hope to quickly iterate our levels and finish this project without these tools.</p>
 <h4 id="save-id-generator">Save ID Generator</h4>
 <p><img src="/dg-save-id-generator.png" alt="save id generator"></p>
-<p>This tools help ensuring our checkpoint will have a unique ID.</p>
+<p>This tools help ensuring our checkpoint to have a unique ID.</p>
 <p>Because we iterate a lot of levels in a short period of time, we keep adding, changing its location and removing the
 checkpoint overtime.</p>
 <p>Without this tools, we have to keep checking every checkpoint we place manually to make sure its ID will not conflict with each other.<br>
@@ -254,11 +489,11 @@ to save the scene. (I learn this the hard way&hellip;)</p>
 <p>At that time, Unity already have a tools to help place the tilesets.<br>
 Unfortunately, We don&rsquo;t want to use its solution.</p>
 <p>Not only it techically still in the beta, but also the amount of work we have to do in order to prepare our sprite is way too much for our use case.</p>
-<p>( We just want to snap our sprite to the grid, for god sake&hellip; )</p>
+<p>We just want to snap our sprite to the grid. ( for god sake&hellip; )</p>
 <p>That&rsquo;s why this tools was created.<br>
 The placing sprite logic is similar to the <strong>Collision &amp; Collider
 Plotter</strong>.</p>
-<p>One issue I have to deal is to prevent too much waste in game object when placing the multiple sprites that use the same texture.</p>
+<p>One issue I have to deal is to prevent too much waste in the game object when placing the multiple sprites that use the same texture.</p>
 <p>Lucky for me, I can change the sprite draw mode to tile to make texture repeat itself to fit the size of the sprite.</p>
 <p>This help us reduce game object count to just one per multiple sprites.</p>
 <br/>
@@ -285,7 +520,7 @@ In this case, It&rsquo;s a &ldquo;Level5&rdquo; scene.</p>
 <p>If I want to start playing from the &ldquo;Introduction&rdquo; scene, I have to close
 the &ldquo;Level5&rdquo; scene first and then have to manually open the &ldquo;Introduction&rdquo; scene before entering the play mode.</p>
 <p>Which make me frustrated overtime.<br>
-So, this tools keeping me sane while repeatly play testing.</p>
+So, this tools keeping me sane while play testing dozen of times.</p>
 <br/>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
@@ -294,11 +529,8 @@ So, this tools keeping me sane while repeatly play testing.</p>
 
 <p>You can view the implementation <a href="https://github.com/CSaratakij/SceneSelector">here</a> .</p>
 <h2 id="how-we-design-a-game-pacing">How we design a game pacing<a class="anchor" href="#how-we-design-a-game-pacing">#</a></h2>
-<p>(the overall design of phase and the chart of difficulty &amp; the period of the phase)
-(don&rsquo;t forget to warn about spoiler alert in our game pacing design, how you teach player on spot of how focus works and how box puzzle works)
-(how you teach player to grab &amp; push box)</p>
 <p>Once we finished interating a lot of levels and decide which level to keep in the game,
-we connect all the levels based on their difficulty and start play testing from the beginning of the game.</p>
+we connect all the levels based on their difficulty and start play testing from the beginning.</p>
 <p>Not only to estimate how much time player need to complete this game, but also wanted to see how each level feels when connect to each other.</p>
 <p>We re-arrange the order of each level if it necessary and take a note when player starting to feels repetitive.</p>
 <p>Then we introduce the new ability or some shift in the game mechanic when player feels repetitive the most.</p>
@@ -310,37 +542,64 @@ we connect all the levels based on their difficulty and start play testing from 
 </figure>
 
 <p>I strongly disagree about front-load tutorial, so the first two phase of the
-game was crafted with the extra care to make sure that I introduce player to the game properly.</p>
+game was crafted with extra care to make sure that I introduce player to the game properly.</p>
+<p>The idea is simple, introduce player to the concept in the smallest fashion
+rather than overwhelm player with too much information at the given time.</p>
 <h3 id="beginning-phase">Beginning Phase<a class="anchor" href="#beginning-phase">#</a></h3>
-<p>(familar with the input &amp; how the player controller works)
-(1. open space to the right guide player to moving to the right)
-(2. height wall to force player to press a longer jump)
-(3. Cat remind player to go to the right, make this a long term goal)</p>
+<p>The main goals of this phase is to make player familar with how to control their character.
+No mind bending stuff or fancy mechanic would get introduce yet.</p>
+<p>At first, I place the level in such a way that player will know exactly which way to proceed. (Just keep going right)</p>
+<p><img src="/dg-0.png" alt="beginning-0"></p>
+<p>Then I make player warm up their jump by introduce a little platform.</p>
+<p><img src="/dg-1.png" alt="beginning-1"></p>
+<p>Then, the game will play a tiny cutscene to remind player about going to the right.</p>
+<p><img src="/dg-11.png" alt="beginning-11"></p>
+<p>Finally, make sure that player know about the high jump (hold a jump button) by placing a taller wall as an obstacle in which player need a box to support the height.</p>
+<p>So, this introduce player about how to push and pull a box in the process.</p>
+<p><img src="/dg-2.png" alt="beginning-2"></p>
 <h3 id="tutorial-phase">Tutorial Phase<a class="anchor" href="#tutorial-phase">#</a></h3>
-<p>(introduce to the main mechanic, the focus and make a box to open the
-door. keep occasionally remind player about how focus works and what the
-limit it is, how spacing of the player impact how focus works)
-(1. Teach about box and remind about long jump)
-(2. Teach about focus)
-(3. Teach about the limit of the focus ability)</p>
+<p>This phase is to make player understand the basic principle of the main
+mechanic. Especially, the focus ability.</p>
+<p>This phase also explain the limit of the focus ability as well.</p>
+<p>At first, I throw player in the situation where they need to use the focus
+ability in order to proceed.</p>
+<p>Not only it help player to understand what it capable of, but also how to use it to solve the puzzle as well.</p>
+<p><img src="/dg-3.png" alt="tutorial-0"></p>
+<p>After that, I introduce its limitation right away. Player need to think
+a little bit in order to proceed.</p>
+<p><img src="/dg-4.png" alt="tutorial-1"></p>
+<p>Then, I teach player about how pressure switch works with a door.</p>
+<p><img src="/dg-5.png" alt="tutorial-2"></p>
+<p>If player use the focus ability, it will wrap them back exactly at the top
+of the switch. Introduce the pressure switch and how it work in the
+process.</p>
+<p>So, player will start to think about how useful the box would be.</p>
+<p><img src="/dg-6.png" alt="tutorial-3"></p>
+<p>Later on, I occasionally remind player about how focus ability work.
+And introduce other limitation of the focus ability.</p>
+<p>In this case, It&rsquo;s about the position of the character when start using the focus ability matter.</p>
+<p><img src="/dg-7.png" alt="tutorial-4"></p>
 <h3 id="increase-difficulty-to-the-highest">Increase difficulty to the highest<a class="anchor" href="#increase-difficulty-to-the-highest">#</a></h3>
-<p>(throw more stuff to the player, introduce new ability along the way, make
-player do some timing required and throw the most difficulty puzzle to the
-player in which player need to master this mechanic to solve it properly)
-(1. Make player play with a timing)
-(2. Introduce the new ability (Move mode))
-(3. Box effect by focus)
-(4. Introduce the new ability (Edit mode))
-(5. Present with the highest difficulty)</p>
+<p>After a lot of simple puzzle to solve that didn&rsquo;t involve the player
+timing at all in the tutorial phase, things starting to shift.</p>
+<p>At first is to play with the player timing, they need to use and disable
+the focus ability at the right time in order to proceed.</p>
+<p>Then things will slowly getting harder and weirder, slowly increasing the
+difficulty to the highest possible.</p>
+<p>Give player some new abilities to play along the way to keep the game fresh.</p>
+<p><img src="/dg-8.png" alt="difficulty-0"></p>
+<p>And it keep getting harder and harder until the most challenge puzzle in the game.</p>
+<p><img src="/dg-9.png" alt="difficulty-1"></p>
 <h3 id="slowly-decrease-difficulty-to-the-end">Slowly Decrease difficulty to the end<a class="anchor" href="#slowly-decrease-difficulty-to-the-end">#</a></h3>
-<p>(slowly decrease difficulty after the hardest difficulty puzzle, and
-sudden drop in difficulty as the player reach to the final level)
-(1. Box move along the moving platform)
-(2. mundane puzzle as the final level)</p>
-<p>(TODO)
-So, at the end&hellip;.It turns out to be&hellip;.
-Can be finish in 10 minutes, if you know how to solve its puzzle.<br>
-not too long and too short.</p>
+<p>After the most challenge puzzle, things will slowly decrease in the difficulty.</p>
+<p>But the time player took from the most challenge puzzle to the final level
+is not long enough and player need more time to cool their head after
+those challenge.</p>
+<p>So, I decide to just suddenly drop in difficulty in the final level.
+Because in the player mind, they just got enough of the puzzle at this point.</p>
+<p>In the end, it&rsquo;s coming together nicely.</p>
+<p>The game took about 10 minutes to finish if player know how to solve those puzzles.</p>
+<p>Not too long and not too short for the game session.</p>
 <h2 id="getting-the-most-out-of-final-round">Getting the most out of final round<a class="anchor" href="#getting-the-most-out-of-final-round">#</a></h2>
 <p>In the final round, we have only 10 days left to complete this project.<br>
 So we decide to make the most out of it.</p>
@@ -355,6 +614,7 @@ We have <strong>Backlog</strong>, <strong>Todo</strong>, <strong>In-Progress</st
 And you have to remove the task from this section if you stop or finish
 the task.</p>
 <p><strong>Done:</strong> is for the complete task.</p>
+<p>And the top piorities tasks will be tag with a label <strong>&ldquo;urgent&rdquo;</strong>.</p>
 <p>With this board, we can finish most of the necessary task.<br>
 You can view the board <a href="https://trello.com/b/hVPRrx2p/dg-frame">here</a> .</p>
 <h2 id="conclusion">Conclusion<a class="anchor" href="#conclusion">#</a></h2>
