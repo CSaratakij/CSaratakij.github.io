@@ -163,8 +163,8 @@ So, I decide to just nerf this ability.</p>
 If you aren&rsquo;t interested in this topic, you can skip to <a href="#how-we-design-a-game-pacing">How we design a game pacing</a> .</p>
 <h3 id="game-system">Game System<a class="anchor" href="#game-system">#</a></h3>
 <h4 id="player-controller">Player Controller</h4>
-<p><img src="/dg-player-controller.png" alt="player controller"></p>
 <p>This is the first thing I finished implementing.</p>
+<p><img src="/dg-player-controller.png" alt="player controller"></p>
 <p>Without knowing what the game is gonna look like at first, I took an
 easiest way possible to approach this by making it based on the physics engine.</p>
 <p>In which you can call this a <strong>&ldquo;Physics based platformer&rdquo;</strong>.</p>
@@ -224,8 +224,8 @@ facing.</p>
 <p>If it successfully detect the wall, player will get the additional jump at about 63 degree up.</p>
 <p>One way collision is using a built in Unity solution.</p>
 <p><strong>Push &amp; Pull box</strong></p>
-<p><img src="/dg-box-pull-push.png" alt="push and pull box"></p>
 <p>Push and pull box have two states.</p>
+<p><img src="/dg-box-pull-push.png" alt="push and pull box"></p>
 <p><strong>Before grab</strong></p>
 <p>The box will have a mass different than a player character to prevent it from moving with a simple bump from the character collider.</p>
 <p>If player getting closer to a box, it will show which key to make player able to grab itself.</p>
@@ -270,9 +270,9 @@ Take a look at this image.</p>
 <p>And other stuff that require a logic to work other than a camera in the
 game cinematic, I&rsquo;ll just code it specifically for that scene.</p>
 <p>And it works perfectly, I don&rsquo;t have to spend too much time on a game cinematic and have an extra time to do something else.</p>
-<h4 id="world-wrapping-mechanic-focusdont-forget-about-the-sprite-mask-box-effect-by-focus">World Wrapping Mechanic (Focus)(don&rsquo;t forget about the sprite mask, box effect by focus)</h4>
-<p><img src="/dg-focus-wrapping.png" alt="world wrapping mechanic"></p>
+<h4 id="world-wrapping-mechanic-focus">World Wrapping Mechanic (Focus)</h4>
 <p>This one is the most challenge things to implement in this project, took me sometime to figure out.</p>
+<p><img src="/dg-focus-wrapping.png" alt="world wrapping mechanic"></p>
 <p>The actual world wrapping logic is not really that hard, but the hard thing is to come up with a general case for the ability itself.</p>
 <p>Because it shouldn&rsquo;t need to have a special case for a particular level.</p>
 <p>Anyone that responsible for placing a level itself shouldn&rsquo;t have to place some
@@ -325,7 +325,7 @@ wrapping in which it will only wrap player per axis at a time.</p>
 <p>This mean player cannot wrap themself to the other side when their height is not the same as the wrapping destination.</p>
 <p>The same thing also apply when player wrapping vertically.</p>
 <p>If player come from the lower side, it&rsquo;s gonna wrap player to the upper
-side while keep the x axis value.</p>
+side while keeping the x axis value.</p>
 <p>With this nerf, the gating problem is easier to solve. Allow us to make some interesting obstacle.</p>
 <p>But this approach also have its own set of problem, I cannot blindly wrap player.</p>
 <p>Because if I do, player will get stuck in other collider.
@@ -363,28 +363,33 @@ and the blocker.</p>
 <p>In order to make sure that player can go to the wrapping destination,
 I have to make a quick overlap testing to see if there is enough space for this character to wrap.</p>
 <p>In this case, character come from the right side.</p>
+<p><img src="/dg-blocker-03.jpg" alt="overlap testing pass"></p>
 <p>So, I have to overlap testing on the left side which use the same width and height as the character to test other collider.</p>
-<p>[image that explain the concept here]</p>
-<p>If the testing pass, I&rsquo;ll leave the blocker away from the focus frame.</p>
+<p>If the testing pass (no collider overlap to the testing area), I&rsquo;ll push the blocker away from the focus frame.</p>
 <p>But, If the overlap testing fail, I&rsquo;ll move the blocker as close as the focus frame to block player from moving closer to the edge of the focus.</p>
-<p>[image that explain the concept here]</p>
-<p>Not all blockers will be move, It&rsquo;ll pick only the blocker at the same side of the wrapping destination.</p>
+<p><img src="/dg-blocker-04.jpg" alt="overlap testing fail"></p>
+<p>Not all blockers will be move, It&rsquo;ll pick only the blocker at the opposite side of the wrapping destination.</p>
 <p>But there is other interesting situation here.<br>
 What if there is enough space on the wrapping destination?</p>
-<p><img src="" alt="image about first tutorial about its limit here"></p>
+<p><img src="/dg-blocking-kiss.png" alt="overlap testing kiss"></p>
 <p>If you guess player can freely move to the left side, then you wrong.</p>
 <p>Remember that the KISS Wrapping <strong>doesn&rsquo;t care</strong> about <strong>any potential empty space</strong>, It&rsquo;s care only if player can wrap to the other side.</p>
 <p>In this case, the area of overlap testing looks like this.</p>
-<p>[image here]</p>
-<p>As you can see, player wrapping horizontally.</p>
-<p>So, It&rsquo;s testing area will only care about x axis and keep the y axis.</p>
-<p>The result of overlap testing will fail, because it&rsquo;s overlap with a tiny ground collider at the right side.</p>
-<p>But, If player height change.<br>
-Now, the overlap testing area look like this.</p>
-<p>[image here]</p>
+<p><img src="/dg-blocking-kiss-explain.png" alt="overlap testing kiss-explain"></p>
+<p>As you can see, player wrapping horizontally.
+So, It&rsquo;s testing area will only care about x axis and keep the y axis.</p>
+<p>The result of overlap testing will fail, because it&rsquo;s overlap with a ground collider at the right side.</p>
+<p>But, What If player position in y axis change?<br>
+Now, the overlap testing area looks like this.</p>
+<p><img src="/dg-blocking-kiss-allow-explain.png" alt="overlap testing kiss explain with height change"></p>
 <p>Overlap testing result will pass, this allow player to go to the wrapping destination by jumping to the left side.</p>
 <p>This is what it looks like in the Unity Editor.</p>
-<p>[video here..]</p>
+<br/>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/89UHRY-0vbk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
 <p>The blocker will keep jumping back and forth between trying to block player and to not block player.</p>
 <p>But, there is a consequence.<br>
 The same thing apply to vertical axis.</p>
@@ -393,38 +398,127 @@ The same thing apply to vertical axis.</p>
 <p>Because player cannot go to the upper side, It&rsquo;s block player from going to the lower side.</p>
 <p>Accidentally, making a convenient ground for player.</p>
 <p><strong>Move Mode</strong></p>
+<p>This mode allow player to move the focus frame from its starting position
+which is the center of the player character.</p>
 <p><img src="/dg-focus-movemode.png" alt="focus move mode"></p>
-<p>(check frame position, if it possible to place in that position (clamp to not geater than the whole viewport))
-(don&rsquo;t allow player to activated this ability when jump)</p>
-<p><strong>Edit Mode</strong>
-(image about edit mode here)
-(check frame position, if it possible to place in that position)</p>
-<p>(summary of world wrapping mechanic)
-(don&rsquo;t forget to box effect by focus)
-<img src="/dg-box-effect-by-focus.png" alt="box effect by focus"></p>
-<h4 id="gamepad-support">GamePad support</h4>
-<p>(XInput, Direct Input here (why use direct input as a fall back))
-(polling gamepad connection here..)</p>
+<p>Since I use the same keybinding for player movement as a focus frame movement, I force player to stand still while using this ability.
+( That&rsquo;s why I call this ability <strong>&ldquo;Focus&rdquo;</strong> )</p>
+<p>There are limits in this ability.<br>
+First, You cannot move its frame further away from the character.</p>
+<br/>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/4K9ba-5p0Ag" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>If I allow it to move any further, the character will wrap itself while standing still.
+It&rsquo;ll look weird from player perspective kinda like the game is broke or something&hellip;</p>
+<p>There is also a situation where its frame cannot move when character upper space is not enough.</p>
+<p><img src="/dg-no-upper-space-left.png" alt="no upper space left"></p>
+<p>This help preventing player from stucking to the wall while its frame trying to move up.</p>
+<p>All it take is just a quick raycast to see if there is any wall above character.</p>
+<p>The whole frame cannot move further away from the screen as well by convert the edge of screen into world point and just do a quick position clamping to the edge of the focus frame.</p>
+<p>And the last thing is to not allow player to activate the move mode while player in the mid-air to prevent
+player from quickly deactivate and activate this mode while in the mid-air which allow player to make a slight change in position of the focus frame
+because of how world wrapping in vertical axis behave.</p>
+<p>This is not intended, feels like a cheap trick when player pull this off.<br>
+That&rsquo;s why I don&rsquo;t allow this at all.</p>
+<p><strong>Edit Mode</strong></p>
+<p>This is similar to move mode, except with the change in size of the focus frame.</p>
+<p>One issue is to prevent the focus frame size to be smaller than the character size, I just need to check if it can actually be shrink before attemping to set its actual size.</p>
+<p>Clamping its size to not be bigger than the screen is using the same logic as in the move mode.</p>
+<p><strong>World Wrapping Summary</strong></p>
+<p>Later on, I apply this world wrapping stuff to the box as well.</p>
+<p><img src="/dg-box-effect-by-focus.png" alt="box effect by focus"></p>
+<p>As you can see, this ability complexity is come from the focus normal mode.</p>
+<p>Once we went into this rabbit hole and figure things out, It turn to something quite interesting.</p>
+<p>The challenge is not only the technical stuff but also a design of the game as well.</p>
+<p>This is what I love about making a video game, specifically implementing stuff.</p>
+<p>The way you decide to solve the implementation problem has a huge impact in the gameplay.</p>
+<p>That&rsquo;s why when game programmer implement something, not only we have
+to fulfill the requirement of the game but we also need to think of how system and player will interact with each other.</p>
+<p>Some might say, it&rsquo;s a <strong>game feels</strong>.</p>
+<p>Like for example, if it&rsquo;s about implementing a jump mechanic.
+Not only we have to make sure its jump will reach to the certain height, but also how player press their controller and how player character behave on the screen.</p>
+<h4 id="gamecontroller-support">GameController Support</h4>
+<p>As first, I want to use XInput but Unity didn&rsquo;t support this at that time.
+There is a 3rd party library that handle this stuff perfectly.</p>
+<p>But I also want other platform to use game controller as well, that&rsquo;s why
+I implement the input with a built in Unity Input System as a fallback.</p>
+<p>There is an issue about a game controller events,
+I need to know when the player plug in their game controller in order to show the proper key to press in the game ui.</p>
+<p>Too bad, Unity won&rsquo;t provide this for me.
+I have to do a polling in which it will detect this event based on the change in the name of the game controller in the input devices list.</p>
+<p>I have two modes to detect.</p>
+<p>One is to keep checking the name each update cycle and other is to keep chechecking only when player press any key.</p>
+<p>I end up choosing the update cycle at the end which is more natural for the player in my opinion.</p>
+<p>But as a time goes by, I didn&rsquo;t integrate the 3rd party library.</p>
+<p>I keep doing other thing since the fallback solution works fine and I didn&rsquo;t have a time to actually put some compiler preprocessor to seperate
+a fallback solution from XInput and test this stuff properly.</p>
 <h4 id="game-progress">Game Progress</h4>
-<p>(Json saving, miss oppotunity to save as async here&hellip;)
-(Save progress in runtime, serialize once)
-(Load on game start)</p>
+<p>This game use JSON as a save file format.<br>
+Game will save when player hit the checkpoint.</p>
+<p>Checkpoint is just a trigger, similar to the camera trigger.</p>
+<p>Since the game doesn&rsquo;t have much data to save, All of the data that need
+to be in the save at first will store in the memory.</p>
+<p>Once player hit checkpoint, it&rsquo;ll serialize the data into the persistent data path.
+The path itself depends on the platform.</p>
+<p>I didn&rsquo;t serialize the whole object, I pick only the necessary data and
+write a serializer and deserializer myself.</p>
+<p>The save will load once player want to continue the game from the main menu.</p>
+<p>Every instance that need to restore its state from this save will begin to
+initialize itself after the scene finish loading.</p>
+<p>One thing that I wish I do early is to make the save to disk asynchronously.</p>
+<p>It&rsquo;s one of those thing that I remind myself to fix as soon as possible,
+but in the end it still not fix.</p>
+<p>It&rsquo;s kinda like a joke where someone implement stuff temporary but end up survive to the production some how.
+(Which is not the good thing)</p>
 <h4 id="door--switch">Door &amp; Switch</h4>
+<p>This is really simple to implement.<br>
+I just do a bool flag to represent the door open state.</p>
 <p><img src="/dg-door-and-switch.png" alt="door and switch"></p>
+<p>Switch is act as the one bool flag.</p>
+<p>All the bool flag need to do an
+<strong>&ldquo;AND&rdquo;</strong> operation to figure out the door actual state.</p>
+<p>The pressue plate switch need to do an overlap testing to ensure the
+reliable checking of something appear over this switch such as box and player.</p>
 <h4 id="moving-platform">Moving Platform</h4>
-<p>(todo) This is the small price I have to pay for using physics based platformer.
-(kinematic and gizmos here&hellip;)</p>
+<p>The moving logic is just a simple translation.</p>
+<p><img src="/dg-platform-editor.png" alt="moving platform"></p>
+<p>First, it&rsquo;ll pick a target destination in which is represent by gizmos with a diamond shape.</p>
+<p>Then it&rsquo;ll move along the direction which found by this expression where <strong>v2</strong> is a target destination
+and <strong>v1</strong> is the position of the platform itself.</p>
+<p>$$direction = { \vec{v2} - \vec{v1} \over \lVert \vec{v2} - \vec{v1} \rVert } $$</p>
+<p>After it reach the current target destination, it&rsquo;ll just pick the next target to make it moving back and forth between targets.</p>
+<p>The red dot line is draw by gizmos to help visualize the path that platform will take.</p>
+<p>For the One way collision, I use a built in Unity physics engine.</p>
 <h4 id="collectable">Collectable</h4>
-<p>(photo here.., integrate with game progress (system))</p>
+<p>Player can pick the coin and photo in this game.</p>
+<p>At first, I want to make an acheivement, something like &ldquo;Collect them all&rdquo;
+or &ldquo;Find all the clue (photo)&rdquo; to explain why player need to pick these stuff.</p>
+<p><img src="/dg-coin-and-chest.png" alt="coin and chest"></p>
+<p>Sadly, both I and our artist can&rsquo;t make this in time.<br>
+The coin and photo can be found in the box.</p>
+<p>There are some coins that lay around in the level as well, but the issue is
+player cannot pick multiple coins at once.</p>
+<p>And again, I need to make a quick overlap testing (pre-allocate) to detect multiple coins.</p>
+<p>As for the photo, it need to integrate with a save file, then it&rsquo;s just a matter of properly load and restore the collectable progress.</p>
+<p><img src="/dg-collectable-photo.png" alt="photo"></p>
 <h4 id="game-ui">Game UI</h4>
-<p>(TODO)
-Unity Canvas do the jobs nicely</p>
-<p>(TODO)
-I avoid Unity Event and its messaging system since it&rsquo;s slower than manually binding a native C# event.
-( Even though it&rsquo;s less convenient to setup )</p>
+<p>Unity Canvas do the jobs nicely.</p>
+<p>Whenever I need to update a simple value to show player on the UI, I avoid polling by using an observer pattern.</p>
+<p>Also, I avoid Unity Event and its messaging system since it&rsquo;s slower than manually binding a native C# event.</p>
 <h4 id="loading-screen">Loading Screen</h4>
-<p><img src="/dg-loading-screen.png" alt="loading screen">
-(load scene async make it possible)</p>
+<p>This is possible by loading scene asynchronously.</p>
+<p><img src="/dg-loading-screen.png" alt="loading screen"></p>
+<p>The actual loading progress value in progress bar come from the actual
+percent that scene has loaded.</p>
+<p>This UI will appear once the scene starting to load and dissappear when
+scene successfully load.</p>
+<p>It need to survive from destroying its instance when changing the scene.<br>
+So, I Just tell unity to not destroy this instance on load.</p>
+<p>This UI do a singleton pattern to reuse it every time the game load
+a scene.</p>
 <h3 id="custom-editor">Custom Editor<a class="anchor" href="#custom-editor">#</a></h3>
 <p>Unity have a way to extend an editor to suit our project need.<br>
 We definitely take advantage of this.</p>
@@ -437,7 +531,7 @@ We cannot hope to quickly iterate our levels and finish this project without the
 checkpoint overtime.</p>
 <p>Without this tools, we have to keep checking every checkpoint we place manually to make sure its ID will not conflict with each other.<br>
 (Which is really time consuming process)</p>
-<p>With this tools, we can check and re-generate every checkpoint ID in one click. This help ensuring our save and load system working properly.</p>
+<p>With this tools, we can check and re-generate every checkpoint ID in one click. This help ensuring our save and load system to work properly.</p>
 <p>One of the problem I came across is how to make Unity save the
 change we made programmatically.</p>
 <p>To make this tools work, I have to push our change to the Unity undo stack.</p>
@@ -452,7 +546,7 @@ to save the scene. (I learn this the hard way&hellip;)</p>
 <p><img src="/dg-sprite-each-collision.png" alt="sprite have its own collision"></p>
 <p>As you can see, each of the sprite has its own box collider.</p>
 <p>The problem here is that, player will get stuck at some point when they try to walk on this type of the collider setup.</p>
-<p>Despite how it look, a bunch of smaller box collider cannot provide a seemless ground surface.</p>
+<p>Despite how it looks, a bunch of smaller box collider cannot provide a seemless ground surface.</p>
 <p>Physics engine try to push away each pair of the collider when it detects the collision in each fixed update to prevent them from overlap to each other.</p>
 <p><img src="/dg-player-stuck-sample.png" alt="player stuck"></p>
 <p>To keep things simple, let assume there are the two possibilities at the moment player collider overlap to the edge of the ground collider.</p>
@@ -550,7 +644,7 @@ rather than overwhelm player with too much information at the given time.</p>
 No mind bending stuff or fancy mechanic would get introduce yet.</p>
 <p>At first, I place the level in such a way that player will know exactly which way to proceed. (Just keep going right)</p>
 <p><img src="/dg-0.png" alt="beginning-0"></p>
-<p>Then I make player warm up their jump by introduce a little platform.</p>
+<p>Then I make player warm up their jump by introduce a little platform session.</p>
 <p><img src="/dg-1.png" alt="beginning-1"></p>
 <p>Then, the game will play a tiny cutscene to remind player about going to the right.</p>
 <p><img src="/dg-11.png" alt="beginning-11"></p>
@@ -582,7 +676,7 @@ And introduce other limitation of the focus ability.</p>
 <h3 id="increase-difficulty-to-the-highest">Increase difficulty to the highest<a class="anchor" href="#increase-difficulty-to-the-highest">#</a></h3>
 <p>After a lot of simple puzzle to solve that didn&rsquo;t involve the player
 timing at all in the tutorial phase, things starting to shift.</p>
-<p>At first is to play with the player timing, they need to use and disable
+<p>At first is to play with the player timing, they need to activate and disable
 the focus ability at the right time in order to proceed.</p>
 <p>Then things will slowly getting harder and weirder, slowly increasing the
 difficulty to the highest possible.</p>
@@ -615,12 +709,28 @@ And you have to remove the task from this section if you stop or finish
 the task.</p>
 <p><strong>Done:</strong> is for the complete task.</p>
 <p>And the top piorities tasks will be tag with a label <strong>&ldquo;urgent&rdquo;</strong>.</p>
-<p>With this board, we can finish most of the necessary task.<br>
+<p>With this board, we can finish most of the necessary tasks.<br>
 You can view the board <a href="https://trello.com/b/hVPRrx2p/dg-frame">here</a> .</p>
 <h2 id="conclusion">Conclusion<a class="anchor" href="#conclusion">#</a></h2>
-<p>(TODO) Shout out to my team, This project won&rsquo;t be possible without them.</p>
+<p>There are some crunch times during this project.<br>
+I got no sleep at the last day of the competition.</p>
+<p>But overalll, I have fun finishing this.<br>
+Thank you everyone for playing this game.</p>
+<p>Shout out to my team and all of our supporter, This project won&rsquo;t be possible without them.</p>
 
 
+              
+                  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
               
           </article>
           
