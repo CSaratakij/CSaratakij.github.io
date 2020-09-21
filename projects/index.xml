@@ -18,7 +18,11 @@
       <pubDate>Wed, 02 Sep 2020 09:15:29 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/i3-rice-rin-shelter/</guid>
-      <description></description>
+      <description>My most popular i3 wm rice.
+Theming with a theme Rin, Shelter in mind.
+showcase: https://www.youtube.com/watch?v=Jn0nibjObqg
+repository: https://github.com/CSaratakij/i3-rice-rin-shelter
+responsible: all (except desktop wallpaper)</description>
     </item>
     
     <item>
@@ -27,7 +31,10 @@
       <pubDate>Wed, 02 Sep 2020 09:15:14 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/mywinbar/</guid>
-      <description></description>
+      <description>The custom taskbar design to use with MyWinTiles to properly show the current workspace.
+release: https://github.com/CSaratakij/MyWinBar/releases
+repository: https://github.com/CSaratakij/MyWinBar
+responsible: all</description>
     </item>
     
     <item>
@@ -36,7 +43,14 @@
       <pubDate>Wed, 02 Sep 2020 09:15:04 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/mywintiles/</guid>
-      <description></description>
+      <description>The tilling window manager for Windows that built on top of explorer shell.
+Focus heavily on keyboard usage (vim-like) to prevent mouse usage which usually need in the typical stacking window manager (use mouse to minimize, maximize, focus and close window) .
+Improve the productivity of any user that heavily use keyboard on their daily basis.
+showcase: https://youtu.be/pSBTtKgShQQ
+more explain: https://youtu.be/GHOhQw8JxgM
+release: https://github.com/CSaratakij/MyWinTiles/releases
+respository: https://github.com/CSaratakij/MyWinTiles
+responsible: all</description>
     </item>
     
     <item>
@@ -45,7 +59,12 @@
       <pubDate>Wed, 02 Sep 2020 09:15:21 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/bongocat-osu-linux-native-port/</guid>
-      <description></description>
+      <description>The bongo cat that show how user smash their keyboard and how their mouse or pen tablet might look like in the real world.
+Very useful when streaming osu game.
+This is the fork implements the linux specific quirk to make it function like its upstream.
+video: https://www.youtube.com/watch?v=OylY3CnOpKs
+repository: https://github.com/CSaratakij/bongocat-osu/tree/feature-linux-native-port
+responsible: linux port</description>
     </item>
     
     <item>
@@ -54,7 +73,12 @@
       <pubDate>Wed, 02 Sep 2020 09:15:34 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/osube/</guid>
-      <description></description>
+      <description>The little script that help extract multiple osu beatmaps.
+It come with a file watcher to detect and auto extract any beatmap in the watching directory.
+This help improve my experience when playing osu in linux with multiplayer mode without the osu supporter.
+release: https://github.com/CSaratakij/Osube/releases
+respository: https://github.com/CSaratakij/Osube
+responsible: all</description>
     </item>
     
     <item>
@@ -63,7 +87,9 @@
       <pubDate>Wed, 02 Sep 2020 09:14:55 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/hierachysection/</guid>
-      <description></description>
+      <description>The custom editor for Unity to highlight a game object that has a prefix &#39;&amp;mdash;&#39; in its name to help seperate stuff in the Hierachy panel.
+respository: https://github.com/CSaratakij/HierachySection
+responsible: all</description>
     </item>
     
     <item>
@@ -72,7 +98,10 @@
       <pubDate>Wed, 02 Sep 2020 09:15:47 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/board-game-path-finding/</guid>
-      <description></description>
+      <description>The little project that demonstrate how to implement a path finding in the board game.
+video: https://youtu.be/5aaWu5wvtR8
+respository: https://github.com/CSaratakij/BoardGamePathFinding
+responsible: all</description>
     </item>
     
     <item>
@@ -81,7 +110,12 @@
       <pubDate>Wed, 02 Sep 2020 09:14:43 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/z3z/</guid>
-      <description></description>
+      <description>The first person shooting that heavy inspired by Lovely Planet.
+Player must defeat all enemies within the level to proceed to the next level.
+game: https://github.com/CSaratakij/z3z/releases
+gameplay: https://www.youtube.com/watch?v=8EtqjO4foA4
+respository: https://github.com/CSaratakij/z3z
+responsible: all</description>
     </item>
     
     <item>
@@ -90,7 +124,12 @@
       <pubDate>Wed, 02 Sep 2020 09:14:50 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/potto-need-water/</guid>
-      <description></description>
+      <description>Transmit water to our lovely Potto.
+Make him growth even more bigger and stronger plant.
+The entry for Global Game Jam 2018.
+jam site: https://globalgamejam.org/2018/games/potto-need-water
+gameplay: https://youtu.be/qRjH79JLIxw
+responsible: AI of Potto, UI Logic</description>
     </item>
     
     <item>
@@ -99,7 +138,17 @@
       <pubDate>Wed, 02 Sep 2020 09:14:37 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/hack-and-turn/</guid>
-      <description></description>
+      <description>Combine 2d hack and slash with a turn base strategy genre.
+One player got a turn base game mechanic and another player got a hack and slash game mechanic.
+Each player must fight until their hit point reach to zero.
+Only one player can play at a given turn.
+The entry for Ludum Dare 41.
+game: https://csaratakij.itch.io/hack-turn
+gameplay: https://youtu.be/myzIMMvDZCQ
+respository: https://github.com/CSaratakij/RTS_TBS
+responsible: game system
+other member:
+person (artist)</description>
     </item>
     
     <item>
@@ -108,7 +157,17 @@
       <pubDate>Wed, 02 Sep 2020 09:14:31 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/pepper-bell-must-be-grilled/</guid>
-      <description></description>
+      <description>The 4 players party game. Each player must catch and throw each other to the roaster to gain the point within the time imit.
+The entry for Ludum Dare 43 .
+game: https://csaratakij.itch.io/pepper-bell-must-be-grilled
+gameplay: https://www.youtube.com/watch?v=HQCoXmRc1NU
+respository: https://github.com/CSaratakij/Ludumdare43
+responsible: game system
+other member:
+person (technical artist)
+person (artist)
+person (artist)
+person (artist)</description>
     </item>
     
     <item>
