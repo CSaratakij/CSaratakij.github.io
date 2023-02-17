@@ -15,8 +15,7 @@
       
       <guid>https://csaratakij.github.io/projects/mywinbar/</guid>
       <description>The custom taskbar design to use with MyWinTiles to properly show the current workspace.
-release: https://github.com/CSaratakij/MyWinBar/releases
-repository: https://github.com/CSaratakij/MyWinBar
+release: https://github.com/CSaratakij/MyWinBar/releases repository: https://github.com/CSaratakij/MyWinBar
 responsible: all</description>
     </item>
     
@@ -29,10 +28,7 @@ responsible: all</description>
       <description>The tilling window manager for Windows that built on top of explorer shell.
 Focus heavily on keyboard usage (vim-like) to prevent mouse usage which usually need in the typical stacking window manager (use mouse to minimize, maximize, focus and close window) .
 Improve the productivity of any user that heavily use keyboard on their daily basis.
-showcase: https://youtu.be/pSBTtKgShQQ
-more explain: https://youtu.be/GHOhQw8JxgM
-release: https://github.com/CSaratakij/MyWinTiles/releases
-respository: https://github.com/CSaratakij/MyWinTiles
+showcase: https://youtu.be/pSBTtKgShQQ more explain: https://youtu.be/GHOhQw8JxgM release: https://github.com/CSaratakij/MyWinTiles/releases respository: https://github.com/CSaratakij/MyWinTiles
 responsible: all</description>
     </item>
     
@@ -45,8 +41,7 @@ responsible: all</description>
       <description>The bongo cat that show how user smash their keyboard and how their mouse or pen tablet might look like in the real world.
 Very useful when streaming osu game.
 This is the fork implements the linux specific quirk to make it function like its upstream.
-video: https://www.youtube.com/watch?v=OylY3CnOpKs
-repository: https://github.com/CSaratakij/bongocat-osu/tree/feature-linux-native-port
+video: https://www.youtube.com/watch?v=OylY3CnOpKs repository: https://github.com/CSaratakij/bongocat-osu/tree/feature-linux-native-port
 responsible: linux port</description>
     </item>
     

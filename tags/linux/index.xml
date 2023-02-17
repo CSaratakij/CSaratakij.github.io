@@ -14,10 +14,8 @@
       <pubDate>Wed, 02 Sep 2020 09:15:29 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/i3-rice-rin-shelter/</guid>
-      <description>My most popular i3 wm rice.
-Theming with a theme Rin, Shelter in mind.
-showcase: https://www.youtube.com/watch?v=Jn0nibjObqg
-repository: https://github.com/CSaratakij/i3-rice-rin-shelter
+      <description>My most popular i3 wm rice. Theming with a theme Rin, Shelter in mind.
+showcase: https://www.youtube.com/watch?v=Jn0nibjObqg repository: https://github.com/CSaratakij/i3-rice-rin-shelter
 responsible: all (except desktop wallpaper)</description>
     </item>
     
@@ -30,8 +28,7 @@ responsible: all (except desktop wallpaper)</description>
       <description>The bongo cat that show how user smash their keyboard and how their mouse or pen tablet might look like in the real world.
 Very useful when streaming osu game.
 This is the fork implements the linux specific quirk to make it function like its upstream.
-video: https://www.youtube.com/watch?v=OylY3CnOpKs
-repository: https://github.com/CSaratakij/bongocat-osu/tree/feature-linux-native-port
+video: https://www.youtube.com/watch?v=OylY3CnOpKs repository: https://github.com/CSaratakij/bongocat-osu/tree/feature-linux-native-port
 responsible: linux port</description>
     </item>
     
@@ -44,8 +41,7 @@ responsible: linux port</description>
       <description>The little script that help extract multiple osu beatmaps.
 It come with a file watcher to detect and auto extract any beatmap in the watching directory.
 This help improve my experience when playing osu in linux with multiplayer mode without the osu supporter.
-release: https://github.com/CSaratakij/Osube/releases
-respository: https://github.com/CSaratakij/Osube
+release: https://github.com/CSaratakij/Osube/releases respository: https://github.com/CSaratakij/Osube
 responsible: all</description>
     </item>
     

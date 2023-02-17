@@ -16,15 +16,11 @@
       <guid>https://csaratakij.github.io/projects/hack-and-turn/</guid>
       <description>Combine 2d hack and slash with a turn base strategy genre.
 One player got a turn base game mechanic and another player got a hack and slash game mechanic.
-Each player must fight until their hit point reach to zero.
-Only one player can play at a given turn.
+Each player must fight until their hit point reach to zero. Only one player can play at a given turn.
 The entry for Ludum Dare 41.
-game: https://csaratakij.itch.io/hack-turn
-gameplay: https://youtu.be/myzIMMvDZCQ
-respository: https://github.com/CSaratakij/RTS_TBS
+game: https://csaratakij.itch.io/hack-turn gameplay: https://youtu.be/myzIMMvDZCQ respository: https://github.com/CSaratakij/RTS_TBS
 responsible: game system
-other member:
-Nattareeya Kositvasutha  (artist)</description>
+other member: Nattareeya Kositvasutha (artist)</description>
     </item>
     
     <item>
@@ -35,15 +31,9 @@ Nattareeya Kositvasutha  (artist)</description>
       <guid>https://csaratakij.github.io/projects/pepper-bell-must-be-grilled/</guid>
       <description>The 4 players party game. Each player must catch and throw each other to the roaster to gain the point within the time imit.
 The entry for Ludum Dare 43 .
-game: https://csaratakij.itch.io/pepper-bell-must-be-grilled
-gameplay: https://www.youtube.com/watch?v=HQCoXmRc1NU
-respository: https://github.com/CSaratakij/Ludumdare43
+game: https://csaratakij.itch.io/pepper-bell-must-be-grilled gameplay: https://www.youtube.com/watch?v=HQCoXmRc1NU respository: https://github.com/CSaratakij/Ludumdare43
 responsible: game system
-other member:
-Chusak Tan (technical artist)
-Jetniphat Likhitwatthanasakun (artist)
-Pattarawut Jarupramote (artist)
-Panawat Khumgun (artist)</description>
+other member: Chusak Tan (technical artist) Jetniphat Likhitwatthanasakun (artist) Pattarawut Jarupramote (artist) Panawat Khumgun (artist)</description>
     </item>
     
   </channel>

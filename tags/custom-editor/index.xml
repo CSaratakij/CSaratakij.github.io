@@ -14,9 +14,8 @@
       <pubDate>Wed, 02 Sep 2020 09:14:55 +0700</pubDate>
       
       <guid>https://csaratakij.github.io/projects/hierachysection/</guid>
-      <description>The custom editor for Unity to highlight a game object that has a prefix &#39;&amp;mdash;&#39; in its name to help seperate stuff in the Hierachy panel.
-respository: https://github.com/CSaratakij/HierachySection
-responsible: all</description>
+      <description>The custom editor for Unity to highlight a game object that has a prefix &amp;rsquo;&amp;mdash;&amp;rsquo; in its name to help seperate stuff in the Hierachy panel.
+respository: https://github.com/CSaratakij/HierachySection responsible: all</description>
     </item>
     
     <item>
@@ -26,8 +25,7 @@ responsible: all</description>
       
       <guid>https://csaratakij.github.io/projects/board-game-path-finding/</guid>
       <description>The little project that demonstrate how to implement a path finding in the board game.
-video: https://youtu.be/5aaWu5wvtR8
-respository: https://github.com/CSaratakij/BoardGamePathFinding
+video: https://youtu.be/5aaWu5wvtR8 respository: https://github.com/CSaratakij/BoardGamePathFinding
 responsible: all</description>
     </item>
     
@@ -38,13 +36,9 @@ responsible: all</description>
       
       <guid>https://csaratakij.github.io/projects/doppelganger/</guid>
       <description>The puzzle platformer with a twist. Player can use a “Focus” power, the ability to bend a dimension to overcome the obstacle.
-game: https://csaratakij.itch.io/doppelganger
-walkthrough: https://www.youtube.com/watch?v=t01DpSmG0PQ
-respository: https://github.com/CSaratakij/DG-Script-Only
+game: https://csaratakij.itch.io/doppelganger walkthrough: https://www.youtube.com/watch?v=t01DpSmG0PQ respository: https://github.com/CSaratakij/DG-Script-Only
 responsible: game system
-other member:
-Nutthan Lekprasan (game designer)
-Jetniphat Likhitwatthanasakun (artist)
+other member: Nutthan Lekprasan (game designer) Jetniphat Likhitwatthanasakun (artist)
 Introduction Before you read any further, I have to warn you. There are some spoiler of the puzzle in this game. Please play the game first to avoid any spoiler.</description>
     </item>
     
